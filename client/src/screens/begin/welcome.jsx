@@ -1,5 +1,5 @@
 import { View, Text, Touchable, TouchableOpacity } from 'react-native'
-import { BorderButton } from '../../constants/system/buttons'
+import { BorderButton } from '../../components/system/buttons'
 import React from 'react'
 
 const Welcome = () => {
