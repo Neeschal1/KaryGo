@@ -10,9 +10,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        splashBackground: "#1467C8",
-        primary: "",
-        secondary: "#EDAE00",
+        background: "#F2F1FF",
+
+        primary: "#1467C8", // blue
+        secondary: "#EDAE00", // yellow
+        lighttext: "#FFFFFF", // for button, when it is dark
+        darktext: "#000000", // for bordered buttons
+
+        // For texts
+        headingText: "",
+        subHeadingText: "",
+        descriptiveText: "#8F8F8F"
       },
       fontFamily: {
         Quicksandbold: ["Quicksandbold"],
@@ -28,6 +36,9 @@ module.exports = {
       },
       padding: {
         screen: "20px",
+      },
+      borderRadius: {
+        button: "20"
       },
       spacing: {
         extrasmall: "4px",

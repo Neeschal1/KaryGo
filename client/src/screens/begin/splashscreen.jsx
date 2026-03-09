@@ -12,8 +12,9 @@ const SplashScreen = () => {
         navigation.navigate("Welcome")
     }, 2000)
   }, []);
+  
   return (
-    <SafeAreaView className="flex-1 flex bg-splashBackground">
+    <SafeAreaView className="flex-1 flex bg-primary">
       <View className="flex bg-splashBackground flex-1 w-full h-full justify-center items-center">
         <Image source={splashLogo} />
       </View>
