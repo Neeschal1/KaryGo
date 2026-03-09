@@ -10,7 +10,7 @@ import {
 import {
   PrimaryButton,
   SecondaryButton,
-  TextualButton,
+  TextualButtonSecondary,
   BorderButton,
   AuthTextCustomInput,
   DescriptiveText,
@@ -39,7 +39,7 @@ const Welcome = () => {
             <PrimaryButton text="Get Started" navigatingScreen="SignupSplash" />
           </View>
           <View className="flex flex-row gap-extrasmall items-center justify-center">
-            <TextualButton text="KaryGo" navigatingScreen={" "} />
+            <TextualButtonSecondary text="KaryGo" navigatingScreen={" "} />
             <SubTitleText text="© 2026. All rights reserved." />
           </View>
         </View>

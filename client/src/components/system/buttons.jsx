@@ -3,11 +3,18 @@ import { useNavigation } from "@react-navigation/native";
 
 
 
-export const PrimaryButton = ({ text, navigatingScreen }) => {
+export const PrimaryButton = ({ text, navigatingScreen, onPress, parameters }) => {
   
   const navigation = useNavigation();
+
   const handleButtonPress = () => {
-    navigation.navigate(navigatingScreen);
+    if (onPress) {
+      onPress( parameters )
+    } else if ( navigatingScreen ) {
+      navigation.navigate( navigatingScreen );
+    } else {
+      console.log("Button Not working perfectly. so sorry!")
+    }
   };
 
   return (
@@ -41,7 +48,23 @@ export const SecondaryButton = ({ text, navigatingScreen }) => {
 
 
 
-export const TextualButton = ({ text, navigatingScreen }) => {
+export const TextualButtonPrimary = ({ text, navigatingScreen }) => {
+
+  const navigation = useNavigation();
+  const handleButtonPress = () => {
+    navigation.navigate(navigatingScreen);
+  };
+
+  return (
+    <TouchableOpacity
+      className="justify-center items-center"
+      onPress={handleButtonPress}
+    >
+      <Text className="font-Quicksandbold text-primary text-description">{text}</Text>
+    </TouchableOpacity>
+  );
+};
+export const TextualButtonSecondary = ({ text, navigatingScreen }) => {
 
   const navigation = useNavigation();
   const handleButtonPress = () => {

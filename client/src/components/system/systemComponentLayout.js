@@ -1,18 +1,21 @@
 import {
   PrimaryButton,
   SecondaryButton,
-  TextualButton,
+  TextualButtonPrimary,
+  TextualButtonSecondary,
   BorderButton,
 } from "./buttons";
-import { AuthTextCustomInput } from "./textInput";
+import { AuthTextCustomInput, AuthPasswordCustomInput } from "./textInput";
 import { DescriptiveText, TitleText, SubTitleText } from "./texts";
 
 export {
   PrimaryButton,
   SecondaryButton,
-  TextualButton,
+  TextualButtonPrimary,
+  TextualButtonSecondary,
   BorderButton,
   AuthTextCustomInput,
+  AuthPasswordCustomInput,
   DescriptiveText,
   TitleText, 
   SubTitleText
