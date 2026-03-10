@@ -22,7 +22,7 @@ export const PrimaryButton = ({
 
   return (
     <TouchableOpacity
-      className="bg-primary rounded-button w-full items-center"
+      className={`${loading?'bg-primaryloading':'bg-primary'} rounded-button w-full items-center`}
       onPress={handleButtonPress}
       disabled={loading}
     >

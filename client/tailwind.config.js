@@ -13,7 +13,9 @@ module.exports = {
         background: "#F2F1FF",
 
         primary: "#1467C8", // blue
+        primaryloading: "#70B2FF", // blue
         secondary: "#EDAE00", // yellow
+        secondaryloading: "#EDAE00", // yellow
         lighttext: "#FFFFFF", // for button, when it is dark
         darktext: "#000000", // for bordered buttons
 

@@ -32,6 +32,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("Invalid Credentials!")
 
   useState(() => {
     setInterval(() => {
@@ -43,13 +44,13 @@ const Login = () => {
     <View className="flex flex-1 bg-background items-center justify-start">
       <ImageBackground
         style={{ height: 223, width: 394 }}
-        className="flex items-center justify-center"
+        className="flex items-center justify-center px-5"
         source={LoginBG}
       >
         {error ? (
           <View className="flex bg-red-600 py-7 px-6 rounded-3xl">
-            <Text className="text-white font-Quicksandbold">
-              Invalid Credentials!
+            <Text className="text-white font-Quicksandbold text-center">
+              {errorMessage}
             </Text>
           </View>
         ) : (
@@ -87,7 +88,7 @@ const Login = () => {
             loading={loading}
             text="Login"
             onPress={handleLogin}
-            parameters={{ email, password, setLoading, setError }}
+            parameters={{ email, password, setLoading, setError, setErrorMessage }}
           />
         </View>
         <View className="flex-row flex-1 items-center justify-center w-full">
