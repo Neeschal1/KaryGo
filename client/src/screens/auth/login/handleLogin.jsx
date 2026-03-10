@@ -6,7 +6,7 @@ const handleLogin = ({email, password, setLoading, setError, setErrorMessage}) =
   setError(true)
   console.log("API Call Successful :)")
   console.log("Email: ", email, " and Password: ", password)
-  setLoading(false)
+  // setLoading(false)
 }
 
 export default handleLogin

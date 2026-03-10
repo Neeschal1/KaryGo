@@ -113,7 +113,7 @@ const Login = () => {
           </View>
           <View className="items-center justify-center flex-row gap-extrasmall">
             <SubTitleText text="New to KaryGo?" />
-            <TextualButtonPrimary text="Signup" navigatingScreen={"Signup"} />
+            <TextualButtonPrimary text="Signup" navigatingScreen={"Email"} />
           </View>
         </View>
       </View>

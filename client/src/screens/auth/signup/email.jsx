@@ -1,12 +1,15 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Email = () => {
   return (
-    <View>
-      <Text>Email</Text>
-    </View>
-  )
-}
+    <SafeAreaView className="flex-1">
+      <View className="bg-background flex flex-1 items-center justify-center">
+        <Text>Email</Text>
+      </View>
+    </SafeAreaView>
+  );
+};
 
-export default Email
+export default Email;

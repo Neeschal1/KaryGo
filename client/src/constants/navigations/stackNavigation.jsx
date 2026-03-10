@@ -29,12 +29,14 @@ const StackNavigation = () => {
           headerTintColor: '#FFFFFF'
         }}
       />
-      <Stack.Screen options={{
-          headerShown: true,
-          headerTransparent: true,
-          headerTitle: " ",
-          headerTintColor: '#000000'
-        }} name="SignupSplash" component={SignupSplash} />
+      <Stack.Screen 
+      // options={{
+      //     headerShown: true,
+      //     headerTransparent: true,
+      //     headerTitle: " ",
+      //     headerTintColor: '#000000'
+      //   }} 
+        name="SignupSplash" component={SignupSplash} />
       <Stack.Screen name="Email" component={Email} />
     </Stack.Navigator>
   );

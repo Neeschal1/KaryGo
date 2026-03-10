@@ -19,7 +19,7 @@ export const SubTitleText = ({text}) => {
 export const DescriptiveText = ({text}) => {
     return (
         <View>
-            <Text className="text-descriptiveText font-description font-Quicksandmedium">{text}</Text>
+            <Text className="text-descriptiveText text-center font-description font-Quicksandmedium">{text}</Text>
         </View>
     )
 }

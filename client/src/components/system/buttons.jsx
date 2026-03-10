@@ -1,5 +1,6 @@
 import { TouchableOpacity, Text, ActivityIndicator, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export const PrimaryButton = ({
   text,
@@ -22,11 +23,11 @@ export const PrimaryButton = ({
 
   return (
     <TouchableOpacity
-      className={`${loading?'bg-primaryloading':'bg-primary'} rounded-button w-full items-center`}
+      className={`${loading ? "bg-primaryloading" : "bg-primary"} rounded-button w-full items-center`}
       onPress={handleButtonPress}
       disabled={loading}
     >
-      { loading ? (
+      {loading ? (
         <View className="py-5">
           <ActivityIndicator color="white" />
         </View>
@@ -38,7 +39,6 @@ export const PrimaryButton = ({
     </TouchableOpacity>
   );
 };
-
 
 export const SecondaryButton = ({ text, navigatingScreen }) => {
   const navigation = useNavigation();
