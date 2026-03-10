@@ -1,19 +1,22 @@
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, ActivityIndicator, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-
-
-export const PrimaryButton = ({ text, navigatingScreen, onPress, parameters }) => {
-  
+export const PrimaryButton = ({
+  text,
+  loading,
+  navigatingScreen,
+  onPress,
+  parameters,
+}) => {
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
     if (onPress) {
-      onPress( parameters )
-    } else if ( navigatingScreen ) {
-      navigation.navigate( navigatingScreen );
+      onPress(parameters);
+    } else if (navigatingScreen) {
+      navigation.navigate(navigatingScreen);
     } else {
-      console.log("Button Not working perfectly. so sorry!")
+      console.log("Button Not working perfectly. so sorry!");
     }
   };
 
@@ -21,16 +24,23 @@ export const PrimaryButton = ({ text, navigatingScreen, onPress, parameters }) =
     <TouchableOpacity
       className="bg-primary rounded-button w-full items-center"
       onPress={handleButtonPress}
+      disabled={loading}
     >
-      <Text className="font-Quicksandbold text-lighttext text-subheading py-5 px-5">{text}</Text>
+      { loading ? (
+        <View className="py-5">
+          <ActivityIndicator color="white" />
+        </View>
+      ) : (
+        <Text className="font-Quicksandbold text-lighttext text-subheading py-5 px-5">
+          {text}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };
 
 
-
 export const SecondaryButton = ({ text, navigatingScreen }) => {
-
   const navigation = useNavigation();
   const handleButtonPress = () => {
     navigation.navigate(navigatingScreen);
@@ -41,15 +51,14 @@ export const SecondaryButton = ({ text, navigatingScreen }) => {
       className="border border-primary rounded-button w-full items-center"
       onPress={handleButtonPress}
     >
-      <Text className="font-Quicksandbold text-darktext text-subheading py-5 px-5">{text}</Text>
+      <Text className="font-Quicksandbold text-darktext text-subheading py-5 px-5">
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };
 
-
-
 export const TextualButtonPrimary = ({ text, navigatingScreen }) => {
-
   const navigation = useNavigation();
   const handleButtonPress = () => {
     navigation.navigate(navigatingScreen);
@@ -60,12 +69,13 @@ export const TextualButtonPrimary = ({ text, navigatingScreen }) => {
       className="justify-center items-center"
       onPress={handleButtonPress}
     >
-      <Text className="font-Quicksandbold text-primary text-description">{text}</Text>
+      <Text className="font-Quicksandbold text-primary text-description">
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };
 export const TextualButtonSecondary = ({ text, navigatingScreen }) => {
-
   const navigation = useNavigation();
   const handleButtonPress = () => {
     navigation.navigate(navigatingScreen);
@@ -76,15 +86,14 @@ export const TextualButtonSecondary = ({ text, navigatingScreen }) => {
       className="justify-center items-center"
       onPress={handleButtonPress}
     >
-      <Text className="font-Quicksandbold text-secondary text-description">{text}</Text>
+      <Text className="font-Quicksandbold text-secondary text-description">
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };
 
-
-
 export const BorderButton = ({ text, navigatingScreen }) => {
-
   const navigation = useNavigation();
   const handleButtonPress = () => {
     navigation.navigate(navigatingScreen);

@@ -1,5 +1,14 @@
-import { View, Text, Image } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+  Button,
+} from "react-native";
 import React, { useState } from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 import handleLogin from "./handleLogin";
 import {
   PrimaryButton,
@@ -15,14 +24,39 @@ import {
 
 const LoginBG = require("../../../assets/images/loginBG.png");
 const logo = require("../../../assets/images/mainlogo.png");
+const GoogleIcon = require("../../../assets/images/google.png");
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState(false);
+
+  useState(() => {
+    setInterval(() => {
+      setError(false);
+    }, 4000);
+  }, []);
+
   return (
     <View className="flex flex-1 bg-background items-center justify-start">
-      <Image className="" source={LoginBG} />
-      <View className="bg-background w-full p-screen rounded-button mt-[-20px]">
+      <ImageBackground
+        style={{ height: 223, width: 394 }}
+        className="flex items-center justify-center"
+        source={LoginBG}
+      >
+        {error ? (
+          <View className="flex bg-red-600 py-7 px-6 rounded-3xl">
+            <Text className="text-white font-Quicksandbold">
+              Invalid Credentials!
+            </Text>
+          </View>
+        ) : (
+          ""
+        )}
+      </ImageBackground>
+      <View className="flex flex-1 bg-background w-full p-screen rounded-button mt-[-20px] gap-extralarge justify-center">
         <View className="w-full gap-large mt-5">
           <View className="items-center">
             <Image source={logo} />
@@ -49,7 +83,37 @@ const Login = () => {
             </View>
             <TextualButtonPrimary text="Forgot Password?" />
           </View>
-          <PrimaryButton text="Login" onPress={handleLogin} parameters={{email, password}}/>
+          <PrimaryButton
+            loading={loading}
+            text="Login"
+            onPress={handleLogin}
+            parameters={{ email, password, setLoading, setError }}
+          />
+        </View>
+        <View className="flex-row flex-1 items-center justify-center w-full">
+          <View style={styles.horizontalBar} />
+          <Text className="mx-3 text-gray-500 text-center">OR</Text>
+          <View style={styles.horizontalBar} />
+        </View>
+        <View className="flex items-center justify-center gap-mid">
+          <View className="gap-small w-full flex">
+            <TouchableOpacity className="bg-black rounded-button w-full items-center flex-row justify-center">
+              <Icon name="apple" size={24} color="#FFFFFF" />
+              <Text className="font-Quicksandmedium text-lighttext text-xl py-4 px-5">
+                Continue with Apple
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity className="border-[#626262] border rounded-button w-full items-center flex-row justify-center">
+              <Image source={GoogleIcon} />
+              <Text className="font-Quicksandmedium text-black text-xl py-4 px-5">
+                Continue with Google
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View className="items-center justify-center flex-row gap-extrasmall">
+            <SubTitleText text="New to KaryGo?" />
+            <TextualButtonPrimary text="Signup" navigatingScreen={"Signup"} />
+          </View>
         </View>
       </View>
     </View>
@@ -57,3 +121,13 @@ const Login = () => {
 };
 
 export default Login;
+
+const styles = StyleSheet.create({
+  horizontalBar: { 
+    height: 2, 
+    width: '30%', 
+    backgroundColor: "black",
+    opacity: 0.5,
+    borderRadius: 50
+  },
+});
