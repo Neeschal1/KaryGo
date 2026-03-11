@@ -7,6 +7,7 @@ import {
   Login,
   Otp,
   Password,
+  Home,
   Profile,
 } from "../screens/Layout";
 const Stack = createStackNavigator();
@@ -40,6 +41,7 @@ const StackNavigation = () => {
         component={SignupSplash}
       />
       <Stack.Screen name="Email" component={Email} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 };

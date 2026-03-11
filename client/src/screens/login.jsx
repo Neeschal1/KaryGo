@@ -7,9 +7,9 @@ import {
   ImageBackground,
   Button,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import handleLogin from "./handleLogin";
+import HandleLogin from "@/src/api/auth/handleLogin";
 import {
   PrimaryButton,
   SecondaryButton,
@@ -21,6 +21,7 @@ import {
   TitleText,
   SubTitleText,
 } from "@/src/components/systemComponentLayout";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginBG = require("@/src/assets/images/loginBG.png");
 const logo = require("@/src/assets/images/mainlogo.png");
@@ -32,14 +33,16 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("Invalid Credentials!")
+  const [errorMessage, setErrorMessage] = useState("Invalid Credentials!");
 
-  useState(() => {
-    setInterval(() => {
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
       setError(false);
-      setLoading(false)
     }, 4000);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [error]);
 
   return (
     <View className="flex flex-1 bg-background items-center justify-start">
@@ -54,9 +57,7 @@ const Login = () => {
               {errorMessage}
             </Text>
           </View>
-        ) : (
-          ""
-        )}
+        ) : null }
       </ImageBackground>
       <View className="flex flex-1 bg-background w-full p-screen rounded-button mt-[-20px] gap-extralarge justify-center">
         <View className="w-full gap-large mt-5">
@@ -67,7 +68,8 @@ const Login = () => {
           <View className="w-full items-end gap-small">
             <View className="w-full gap-mid">
               <View className="w-full gap-small">
-                <SubTitleText text="Email" />
+                  <SubTitleText text="Email" />
+                  
                 <AuthTextCustomInput
                   placeholderText="Enter your email"
                   valueText={email}
@@ -88,8 +90,15 @@ const Login = () => {
           <PrimaryButton
             loading={loading}
             text="Login"
-            onPress={handleLogin}
-            parameters={{ email, password, setLoading, setError, setErrorMessage }}
+            Press={HandleLogin}
+            parameters={{
+              email,
+              password,
+              setLoading,
+              setError,
+              setErrorMessage,
+              navigation
+            }}
           />
         </View>
         <View className="flex-row flex-1 items-center justify-center w-full">
@@ -125,11 +134,11 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  horizontalBar: { 
-    height: 2, 
-    width: '30%', 
+  horizontalBar: {
+    height: 2,
+    width: "30%",
     backgroundColor: "black",
     opacity: 0.5,
-    borderRadius: 50
+    borderRadius: 50,
   },
 });

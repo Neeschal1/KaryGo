@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     
     # installed apps
     'apps.accounts',
-    # 'apps.payments',
+    # 'apps.jobs',
     # 'apps.products',
 ]
 

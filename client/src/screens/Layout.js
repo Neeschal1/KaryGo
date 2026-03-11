@@ -6,9 +6,11 @@ import Email from "./email";
 import OTP from "./otp";
 import Password from "./password";
 import Profile from "./profile";
+import Home from './home'
 
 export {
   SplashScreen,
+  Home,
   Welcome,
   Login,
   SignupSplash,

@@ -6,14 +6,14 @@ export const PrimaryButton = ({
   text,
   loading,
   navigatingScreen,
-  onPress,
+  Press,
   parameters,
 }) => {
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
-    if (onPress) {
-      onPress(parameters);
+    if (Press) {
+      Press(parameters);
     } else if (navigatingScreen) {
       navigation.navigate(navigatingScreen);
     } else {
