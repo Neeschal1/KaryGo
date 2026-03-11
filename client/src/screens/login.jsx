@@ -20,11 +20,11 @@ import {
   DescriptiveText,
   TitleText,
   SubTitleText,
-} from "../../../components/system/systemComponentLayout";
+} from "@/src/components/systemComponentLayout";
 
-const LoginBG = require("../../../assets/images/loginBG.png");
-const logo = require("../../../assets/images/mainlogo.png");
-const GoogleIcon = require("../../../assets/images/google.png");
+const LoginBG = require("@/src/assets/images/loginBG.png");
+const logo = require("@/src/assets/images/mainlogo.png");
+const GoogleIcon = require("@/src/assets/images/google.png");
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -37,6 +37,7 @@ const Login = () => {
   useState(() => {
     setInterval(() => {
       setError(false);
+      setLoading(false)
     }, 4000);
   }, []);
 

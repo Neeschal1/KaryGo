@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
-const splashLogo = require("../../assets/images/splashLogo.png");
+const splashLogo = require("../assets/images/splashLogo.png");
 
 const SplashScreen = () => {
   const navigation = useNavigation();

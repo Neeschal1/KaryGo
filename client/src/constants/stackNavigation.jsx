@@ -1,14 +1,14 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { SplashScreen, Welcome } from "../../screens/begin/beginLayout";
 import {
+  SplashScreen,
+  Welcome,
   Email,
   SignupSplash,
   Login,
   Otp,
   Password,
   Profile,
-} from "../../screens/auth/authLayout";
-
+} from "../screens/Layout";
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
@@ -26,17 +26,19 @@ const StackNavigation = () => {
           headerShown: true,
           headerTransparent: true,
           headerTitle: " ",
-          headerTintColor: '#FFFFFF'
+          headerTintColor: "#FFFFFF",
         }}
       />
-      <Stack.Screen 
-      // options={{
-      //     headerShown: true,
-      //     headerTransparent: true,
-      //     headerTitle: " ",
-      //     headerTintColor: '#000000'
-      //   }} 
-        name="SignupSplash" component={SignupSplash} />
+      <Stack.Screen
+        // options={{
+        //     headerShown: true,
+        //     headerTransparent: true,
+        //     headerTitle: " ",
+        //     headerTintColor: '#000000'
+        //   }}
+        name="SignupSplash"
+        component={SignupSplash}
+      />
       <Stack.Screen name="Email" component={Email} />
     </Stack.Navigator>
   );

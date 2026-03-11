@@ -1,0 +1,19 @@
+import SplashScreen from "./splashscreen";
+import Welcome from "./welcome";
+import Login from "./login";
+import SignupSplash from "./signupsplash";
+import Email from "./email";
+import OTP from "./otp";
+import Password from "./password";
+import Profile from "./profile";
+
+export {
+  SplashScreen,
+  Welcome,
+  Login,
+  SignupSplash,
+  Email,
+  OTP,
+  Password,
+  Profile,
+};

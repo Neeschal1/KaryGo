@@ -16,11 +16,11 @@ import {
   DescriptiveText,
   TitleText,
   SubTitleText,
-} from "../../components/system/systemComponentLayout";
+} from "../components/systemComponentLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const WelcomeImage = require("../../assets/images/welcomeImage.png");
-const logo = require("../../assets/images/mainlogo.png");
+const WelcomeImage = require("../assets/images/welcomeImage.png");
+const logo = require("../assets/images/mainlogo.png");
 
 const Welcome = () => {
   return (

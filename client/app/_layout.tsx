@@ -1,6 +1,6 @@
 import "../global.css";
 import { useFonts } from "expo-font";
-import StackNavigation from "../src/constants/navigations/stackNavigation";
+import StackNavigation from "../src/constants/stackNavigation";
 import Fonts from "../src/utils/fonts";
 
 export default function RootLayout() {

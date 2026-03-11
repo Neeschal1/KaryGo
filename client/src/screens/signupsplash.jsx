@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
-import { DescriptiveText } from "../../../components/system/systemComponentLayout";
-import { BorderButton } from "@/src/components/system/buttons";
+import { BorderButton, DescriptiveText } from "@/src/components/systemComponentLayout";
 import { useNavigation } from "@react-navigation/native";
 
 const Logo = require("@/src/assets/images/mainlogo.png");
