@@ -108,7 +108,7 @@ const Login = () => {
         </View>
         <View className="flex items-center justify-center gap-mid">
           <View className="gap-small w-full flex">
-            <TouchableOpacity className="bg-black rounded-button w-full items-center flex-row justify-center">
+            <TouchableOpacity onPress={()=>{navigation.navigate("Resume")}} className="bg-black rounded-button w-full items-center flex-row justify-center">
               <Icon name="apple" size={24} color="#FFFFFF" />
               <Text className="font-Quicksandmedium text-lighttext text-xl py-4 px-5">
                 Continue with Apple

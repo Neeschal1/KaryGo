@@ -8,6 +8,7 @@ import {
   Otp,
   Password,
   Home,
+  Resume,
   Profile,
 } from "../screens/Layout";
 const Stack = createStackNavigator();
@@ -42,6 +43,7 @@ const StackNavigation = () => {
       />
       <Stack.Screen name="Email" component={Email} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Resume" component={Resume} />
     </Stack.Navigator>
   );
 };

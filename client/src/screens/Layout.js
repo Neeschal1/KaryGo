@@ -7,6 +7,7 @@ import OTP from "./otp";
 import Password from "./password";
 import Profile from "./profile";
 import Home from './home'
+import Resume from './resume'
 
 export {
   SplashScreen,
@@ -18,4 +19,5 @@ export {
   OTP,
   Password,
   Profile,
+  Resume,
 };

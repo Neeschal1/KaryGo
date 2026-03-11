@@ -33,10 +33,7 @@ const HandleLogin = async ({
     }
   } catch (err) {
     console.log("Full error: ", err.response?.data?.Email?.[0] || err.message);
-    if (
-      err.response?.data?.Email?.[0] ||
-      err.message == "Request failed with status code 400"
-    ) {
+    if (err.response?.data?.Email?.[0] ||err.message == "Request failed with status code 400") {
       setError(true);
       setErrorMessage("Field cannot be empty.");
     } else {
