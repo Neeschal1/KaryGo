@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   PrimaryButton,
@@ -11,37 +11,28 @@ import { useState } from "react";
 
 const Resume = () => {
   const [cv, setCV] = useState(false);
-  const documentPick = async () => {
-    try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: "application/pdf",
-        copyToCacheDirectory: true,
-      });
-      if (result.assets[0].mimeType = "application/pdf"){
-        setCV(result)
-      }
-      console.log("Selected Docs: ", cv)
-    } catch (err) {
-      console.log("Error: ", err);
-    }
-  };
+//   const documentPick = async () => {
+//     try {
+//       const result = await DocumentPicker.getDocumentAsync({
+//         type: "application/pdf",
+//         copyToCacheDirectory: true,
+//       });
+//       if (result.assets[0].mimeType = "application/pdf"){
+//         setCV(result)
+//       }
+//       console.log("Selected Docs: ", cv)
+//     } catch (err) {
+//       console.log("Error: ", err);
+//     }
+//   };
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="flex-1 items-center justify-center bg-background p-screen">
-        <View>
-          <TitleText text="Upload your Resume" />
-          <SubTitleText />
+      <View className="flex-1 items-center justify-center gap-10 bg-background p-screen">
+        <View className="flex w-full items-center gap-5">
+          <SubTitleText text="Paste all of your Resume's detail here" />
+          <TextInput placeholder="Enter your resume contents" value={cv} onChange={setCV} style={{height: 100}} className="w-full border-gray-400 font-Quicksandmedium rounded-3xl border" multiline={true} />
         </View>
-        <View className="items-center flex justify-center rounded-3xl py-5 px-10 border border-gray-300 mb-10">
-          <TouchableOpacity
-            className="bg-purple-300 items-center p-5 rounded-3xl"
-            onPress={documentPick}
-          >
-            <Text>Upload your Resume</Text>
-          </TouchableOpacity>
-          <SubTitleText text="Choose a pdf file to upload" />
-          <DescriptiveText text="Make sure to upload your valid current resume. Thank you :)" />
-        </View>
+        
         <PrimaryButton text="Upload Resume" />
       </View>
     </SafeAreaView>

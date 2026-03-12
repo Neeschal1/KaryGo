@@ -11,7 +11,7 @@ export const TitleText = ({text}) => {
 export const SubTitleText = ({text}) => {
     return (
         <View>
-            <Text className="text-darktext font-description font-Quicksandmedium">{text}</Text>
+            <Text className="text-darktext font-subheading font-Quicksandmedium">{text}</Text>
         </View>
     )
 }
