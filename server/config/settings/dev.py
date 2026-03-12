@@ -13,21 +13,21 @@ SECRET_KEY = Config.SECRET_KEY
 
 
 # Allowed hosts to access this backend system
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Root URL to hit, i. e. url of project of an entire application
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
 
 
 # Asynchronous server gateway interface initialization
-ASGI_APPLICATION = 'config.asgi.application'
+ASGI_APPLICATION = "config.asgi.application"
 
 
 # Database for development phase only
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    },
 }

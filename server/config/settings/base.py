@@ -1,5 +1,6 @@
 from pathlib import Path
 from env_config import Config
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = Config.SECRET_KEY
@@ -17,6 +18,7 @@ INSTALLED_APPS = [
     # installed packages
     'rest_framework',
     "corsheaders",
+    'rest_framework_simplejwt',
     
     # installed apps
     'apps.accounts',
@@ -70,6 +72,14 @@ CORS_ALLOW_METHODS = (
 )
 
 
+# JWT setup
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+
 # Passwords for authorization
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
@@ -77,6 +87,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
+
+
+# JWT tokens timing setup
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True
+}
 
 
 # Internationalization
