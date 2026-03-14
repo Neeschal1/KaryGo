@@ -63,22 +63,6 @@ class AccountModification(viewsets.ViewSet):
         user = get_object_or_404(User, pk=pk)
         user.delete()
         return Response(user.data)
-               
-
-"""
-{
-    "first_name": "Samikshya Pokharel",
-    "username": "samy",
-    "email": "samy@gmail.com",
-    "password": "samy123"
-}
-{
-    "first_name": "Susmita Pokharel",
-    "username": "susi",
-    "email": "susi@gmail.com",
-    "password": "bsusi123"
-}
-"""
 
 # Account signup view
 # class UserAccountSignupSerializersView(APIView):
