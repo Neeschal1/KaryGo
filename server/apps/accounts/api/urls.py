@@ -4,10 +4,12 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('account', UserAccountSignup, basename="useraccounts")
-# router.register('')
+router.register('account_signup', UserAccountSignupSerializersView, basename="useraccounts")
+router.register('account_login', UserAccountLoginSerializerView, basename="accountlogin")
+router.register('account_modification', AccountModification, basename="modification")
 
 urlpatterns = [
+    path("list_all_user/", AdminAccessResources.as_view(), name='AdminAccessResources'),
     # path('create_account/', UserAccountSignupSerializersView.as_view(), name='UserAccountSignupSerializersView'),
     # path('login_account/', UserAccountLoginSerializersView.as_view(), name='UserAccountLoginSerializersView'),
     # path('recruiter_profile/', RecruiterProfileView.as_view(), name='RecruiterProfileView'),

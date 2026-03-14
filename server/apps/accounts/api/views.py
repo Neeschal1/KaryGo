@@ -1,11 +1,23 @@
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from .serializers import *
 from rest_framework import viewsets
-from django.contrib.auth.models import User
 from ..services.auth import UserAuth
-# from ..services.profile import Profile
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework import status, generics
+from rest_framework.response import Response
+from ..services.profile import Profile
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
-class UserAccountSignup(viewsets.ViewSet):
+
+# Resources accessible to admin only
+class AdminAccessResources(generics.ListAPIView):
+    permission_classes = [IsAdminUser]
+    queryset = User.objects.all()
+    serializer_class = UserAccountSignupSerializers
+
+
+# Account signup view
+class UserAccountSignupSerializersView(viewsets.ViewSet):
     permission_classes = [AllowAny]
     
     def create(self, request):
@@ -17,16 +29,41 @@ class UserAccountSignup(viewsets.ViewSet):
             Username = signup_serializers.validated_data["username"]
             Password = signup_serializers.validated_data["password"]
             return UserAuth()._signup(FirstName, Email, Username, Password, number_of_users)
+
+ 
+# Account login view           
+class UserAccountLoginSerializerView(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+    
+    def create(self, request):
+        serializers = UserAccountLoginSerializers(data=request.data)
+        if serializers.is_valid(raise_exception=True):
+            email = serializers.validated_data['Email']
+            password = serializers.validated_data['Password']
+            return UserAuth()._login(email, password)
         
+
+# Account modification view
+class AccountModification(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+    
     def update(self, request, pk=None):
-        queryset = User.objects.all()
-        serializer = UserAccountSignupSerializers(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        if serializer.is_valid():
-            serializer.save()
-            return 
-            
+        user_detail = get_object_or_404(User, pk=pk)
+        update_serializer = UserAccountSignupSerializers(user_detail, data=request.data, partial=True)
+        if update_serializer.is_valid(raise_exception=True):
+            update_serializer.save()
+            return Response({"Details":{"Message":"Account updated successfully :)", "Data:":update_serializer.data}})
         
+    def retrieve(self, request, pk=None):
+        user = get_object_or_404(User, pk=pk)
+        serializer = UserAccountSignupSerializers(user)
+        return Response(serializer.data)
+    
+    def delete(self, request, pk=None):
+        user = get_object_or_404(User, pk=pk)
+        user.delete()
+        return Response(user.data)
+               
 
 """
 {

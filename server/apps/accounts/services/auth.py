@@ -54,3 +54,12 @@ class UserAuth:
     
     
     # Updating the current account
+    def _updateaccount(self, firstname, email, username, password):
+        user = User.objects.create(
+            first_name = firstname,
+            email = email,
+            username = username,
+            password = make_password(password)
+        )
+        
+        return Response({"Message":f"{user.first_name}'s account updated successfully :)"}, status = status.HTTP_201_CREATED)

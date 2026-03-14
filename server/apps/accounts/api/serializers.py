@@ -6,8 +6,9 @@ from ..models.entities import Recruiter, Seeker
 class UserAccountSignupSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["first_name", "username", "email", "password"]
+        fields = ["id", "first_name", "username", "email", "password"]
         extra_kwargs = {
+            "id": {"read_only": True},
             "first_name": {"required": True},
             "username": {"required": True},
             "email": {"required": True},
