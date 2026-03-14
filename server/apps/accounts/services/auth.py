@@ -1,4 +1,6 @@
+from ..api.serializers import *
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
 from rest_framework.validators import ValidationError
@@ -28,7 +30,6 @@ class UserAuth:
     
     # Signing up a new account
     def _signup(self, firstname, email, username, password, number_of_users):
-        
         if (User.objects.filter(email=email).exists()):
             return Response({"Message":"An account is already signed up with the entered email. Please choose another account. Thank you :)"})
         
@@ -54,12 +55,41 @@ class UserAuth:
     
     
     # Updating the current account
-    def _updateaccount(self, firstname, email, username, password):
-        user = User.objects.create(
-            first_name = firstname,
-            email = email,
-            username = username,
-            password = make_password(password)
-        )
-        
-        return Response({"Message":f"{user.first_name}'s account updated successfully :)"}, status = status.HTTP_201_CREATED)
+    def _updateaccount(self, pk, request):
+        user_detail = get_object_or_404(User, pk=pk)
+        update_serializer = UserAccountSignupSerializers(user_detail, data=request.data, partial=True)
+        if update_serializer.is_valid(raise_exception=True):
+            update_serializer.save()
+            return Response({"Details":{"Message":"Account updated successfully :)", "Data:":update_serializer.data}})
+     
+    
+    
+    # Retrieving user's account detail
+    def _retrievedata(self, pk):
+        user = get_object_or_404(User, pk=pk)
+        serializer = UserAccountSignupSerializers(user)
+        return Response(serializer.data)
+    
+    
+    
+    # Deleting user's account
+    def _deleteaccount(self, pk):
+        user = get_object_or_404(User, pk=pk)
+        user.delete()
+        return Response({"Message": "Account deleted successfully :)"},status=status.HTTP_204_NO_CONTENT)
+    
+    
+    
+    # Logging out from an account
+    def _logoutaccount(self, request):
+        refresh_token = request.data.get("refreshtoken")
+        if refresh_token:
+            try:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+                return Response({"Message":"Log out successful :)"}, status=status.HTTP_200_OK)
+            except Exception as err:
+                return Response({"Message": "Invalid token!"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"Message":"Refresh token required!"}, status=status.HTTP_404_NOT_FOUND)
+            

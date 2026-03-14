@@ -48,37 +48,16 @@ class AccountModification(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
     
     def update(self, request, pk=None):
-        user_detail = get_object_or_404(User, pk=pk)
-        update_serializer = UserAccountSignupSerializers(user_detail, data=request.data, partial=True)
-        if update_serializer.is_valid(raise_exception=True):
-            update_serializer.save()
-            return Response({"Details":{"Message":"Account updated successfully :)", "Data:":update_serializer.data}})
+        return UserAuth()._updateaccount(pk, request)
         
     def retrieve(self, request, pk=None):
-        user = get_object_or_404(User, pk=pk)
-        serializer = UserAccountSignupSerializers(user)
-        return Response(serializer.data)
+        return UserAuth()._retrievedata(pk)
     
     def delete(self, request, pk=None):
-        user = get_object_or_404(User, pk=pk)
-        user.delete()
-        return Response(user.data)
-               
-
-"""
-{
-    "first_name": "Samikshya Pokharel",
-    "username": "samy",
-    "email": "samy@gmail.com",
-    "password": "samy123"
-}
-{
-    "first_name": "Susmita Pokharel",
-    "username": "susi",
-    "email": "susi@gmail.com",
-    "password": "bsusi123"
-}
-"""
+        return UserAuth()._deleteaccount(pk)
+    
+    def logout(self, request):
+        return UserAuth()._logoutaccount(request)
 
 # Account signup view
 # class UserAccountSignupSerializersView(APIView):
