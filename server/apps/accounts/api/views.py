@@ -54,16 +54,10 @@ class AccountModification(viewsets.ViewSet):
         return UserAuth()._retrievedata(pk)
     
     def delete(self, request, pk=None):
-<<<<<<< HEAD
         return UserAuth()._deleteaccount(pk)
     
     def logout(self, request):
         return UserAuth()._logoutaccount(request)
-=======
-        user = get_object_or_404(User, pk=pk)
-        user.delete()
-        return Response(user.data)
->>>>>>> 91517bb24204e05c2b5b679c4d4c811242ba13f0
 
 # Account signup view
 # class UserAccountSignupSerializersView(APIView):
