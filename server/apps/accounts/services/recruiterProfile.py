@@ -22,8 +22,10 @@ class RecruiterProfile:
         return Response({"Message":f"Profile created for: {recruiter.Full_Name}"}, status=status.HTTP_201_CREATED)
     
     
-    def _recruiterprofileretrieve(self, request, pk):
-        return
+    def _recruiterprofileretrieve(self, pk, request):
+        user = get_object_or_404(Recruiter, ID=pk)
+        serializer = RecruiterSerializers(user)
+        return Response(serializer.data)
     
     
     # Update recruiter's existing profile

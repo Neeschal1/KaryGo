@@ -75,11 +75,12 @@ class RecruiterProfileView(viewsets.ViewSet):
         if serializer:
             return RecruiterProfile()._recruiterscreateprofile(serializer, request.user)
         
-    # def retrieve(self, request, pk=None):
-    #     return Profile()._recruiterprofileretrieve(pk, request)
-        
+    def retrieve(self, request, pk=None):
+        return RecruiterProfile()._recruiterprofileretrieve(pk, request)
+    
     def update(self, request, pk=None):
         return RecruiterProfile()._recruiterprofileupdate(pk, request)
+    
     
 
 
