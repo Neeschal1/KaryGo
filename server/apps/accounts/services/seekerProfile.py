@@ -41,10 +41,12 @@ class SeekerProfile:
         serializer.is_valid(raise_exception=True)
         if serializer:
             serializer.save()
-            return Response({"Details": {"Message":"Account updated successfully :)", "Detail": serializer.data}}, status=status.HTTP_201_CREATED)
+            return Response({"Details": {"Message":"Account updated successfully :)", "Detail": serializer.data}}, status=status.HTTP_200_OK)
         
     
     
     # Delete seeker's existing profile
     def _seekerprofiledelete(self, request, pk):
-        return
+        user = get_object_or_404(Seeker, ID=pk)
+        user.delete()
+        return Response({"Message":"ID deleted successfully :)"}, status=status.HTTP_204_NO_CONTENT)

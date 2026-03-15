@@ -115,4 +115,4 @@ class SeekersProfileView(viewsets.ViewSet):
         return SeekerProfile()._seekerprofileupdate(request, pk)
     
     def delete(self, request, pk=None):
-        return
+        return SeekerProfile()._seekerprofiledelete(request, pk)

@@ -46,4 +46,4 @@ class RecruiterProfile:
     def _recruiterprofiledelete(self, pk, request):
         user = get_object_or_404(Recruiter, ID=pk)
         user.delete()
-        return Response({"Message":"ID deleted successfully :)"})
+        return Response({"Message":"ID deleted successfully :)"}, status=status.HTTP_204_NO_CONTENT)
