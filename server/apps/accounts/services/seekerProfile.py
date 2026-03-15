@@ -30,6 +30,21 @@ class SeekerProfile:
         user = get_object_or_404(Seeker, ID=pk)
         serializer = SeekerSerializers(user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
+        return Response({"Detail": serializer.data}, status=status.HTTP_200_OK)
+        
+        
+        
+    # Update seeker's existing profile
+    def _seekerprofileupdate(self, request, pk):
+        user = get_object_or_404(Seeker, ID=pk)
+        serializer = SeekerSerializers(user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
         if serializer:
             serializer.save()
-            return Response({"Details": {"Message":"Account updated successfully :)", "Detail": serializer.data}})
+            return Response({"Details": {"Message":"Account updated successfully :)", "Detail": serializer.data}}, status=status.HTTP_201_CREATED)
+        
+    
+    
+    # Delete seeker's existing profile
+    def _seekerprofiledelete(self, request, pk):
+        return

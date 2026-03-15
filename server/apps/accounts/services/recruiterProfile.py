@@ -27,7 +27,7 @@ class RecruiterProfile:
     def _recruiterprofileretrieve(self, pk, request):
         user = get_object_or_404(Recruiter, ID=pk)
         serializer = RecruiterSerializers(user)
-        return Response({"Message":{"Data":serializer.data}})
+        return Response({"Message":{"Data":serializer.data}}, status=status.HTTP_200_OK)
     
     
     
