@@ -6,6 +6,7 @@ from rest_framework import generics
 from ..services.recruiterProfile import RecruiterProfile
 from ..services.seekerProfile import SeekerProfile
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+from drf_yasg.utils import swagger_auto_schema
 
 
 """ Resources accessible to admin only """
@@ -34,6 +35,7 @@ class AdminAccessSeekerProfilesDetails(generics.ListAPIView):
 class UserAccountSignupSerializersView(viewsets.ViewSet):
     permission_classes = [AllowAny]
     
+    @swagger_auto_schema(request_body=UserAccountLoginSerializers)
     def create(self, request):
         number_of_users = User.objects.all().count()
         signup_serializers = UserAccountSignupSerializers(data=request.data)
@@ -49,6 +51,7 @@ class UserAccountSignupSerializersView(viewsets.ViewSet):
 class UserAccountLoginSerializerView(viewsets.ViewSet):
     permission_classes = [AllowAny]
     
+    @swagger_auto_schema(request_body=UserAccountLoginSerializers)
     def create(self, request):
         serializers = UserAccountLoginSerializers(data=request.data)
         if serializers.is_valid(raise_exception=True):
@@ -80,6 +83,7 @@ class AccountModification(viewsets.ViewSet):
 class RecruiterProfileView(viewsets.ViewSet):
     permission_classes = [AllowAny]
     
+    @swagger_auto_schema(request_body=UserAccountLoginSerializers)
     def create(self, request):
         serializer = RecruiterSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -102,6 +106,7 @@ class RecruiterProfileView(viewsets.ViewSet):
 class SeekersProfileView(viewsets.ViewSet):
     permission_classes = [AllowAny]
     
+    @swagger_auto_schema(request_body=UserAccountLoginSerializers)
     def create(self, request):
         serializer = SeekerSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)

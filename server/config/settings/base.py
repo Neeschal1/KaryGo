@@ -18,7 +18,8 @@ INSTALLED_APPS = [
     # installed packages
     'rest_framework',
     "corsheaders",
-    'rest_framework_simplejwt',
+    'rest_framework_simplejwt', 
+    'drf_yasg',
     
     # installed apps
     'apps.accounts',
@@ -74,6 +75,9 @@ CORS_ALLOW_METHODS = (
 
 # JWT setup
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
