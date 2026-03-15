@@ -9,14 +9,24 @@ from ..services.recruiterProfile import RecruiterProfile
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 
-# Resources accessible to admin only
-class AdminAccessResources(generics.ListAPIView):
+""" Resources accessible to admin only """
+
+# All users profile
+class AdminAccessAccountDetails(generics.ListAPIView):
     permission_classes = [IsAdminUser]
     queryset = User.objects.all()
     serializer_class = UserAccountSignupSerializers
+    
+# Recruiter's profile
+class AdminAccessAccountRecruiterProfiles(generics.ListAPIView):
+    permission_classes = [IsAdminUser]
+    queryset = Recruiter.objects.all()
+    serializer_class = RecruiterSerializers
 
 
-# Account signup view
+""" Account views """
+
+# Signup
 class UserAccountSignupSerializersView(viewsets.ViewSet):
     permission_classes = [AllowAny]
     
@@ -31,7 +41,7 @@ class UserAccountSignupSerializersView(viewsets.ViewSet):
             return UserAuth()._signup(FirstName, Email, Username, Password, number_of_users)
 
  
-# Account login view           
+# Login         
 class UserAccountLoginSerializerView(viewsets.ViewSet):
     permission_classes = [AllowAny]
     
@@ -43,7 +53,7 @@ class UserAccountLoginSerializerView(viewsets.ViewSet):
             return UserAuth()._login(email, password)
         
 
-# Account modification view
+# Modification
 class AccountModification(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
     
@@ -60,14 +70,11 @@ class AccountModification(viewsets.ViewSet):
         return UserAuth()._logoutaccount(request)
 
 
-# # Recruiter Profile View
+
+
+# Recruiter's profile
 class RecruiterProfileView(viewsets.ViewSet):
     permission_classes = [AllowAny]
-    
-    def list(self, request):
-        queryset = Recruiter.objects.all()
-        serializer = RecruiterSerializers(queryset, many=True)
-        return Response(serializer.data)
     
     def create(self, request):
         serializer = RecruiterSerializers(data=request.data)
@@ -80,6 +87,9 @@ class RecruiterProfileView(viewsets.ViewSet):
     
     def update(self, request, pk=None):
         return RecruiterProfile()._recruiterprofileupdate(pk, request)
+    
+    def delete(self, request, pk=None):
+        return RecruiterProfile()._recruiterprofiledelete(pk, request)
     
     
 
