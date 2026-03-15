@@ -16,11 +16,7 @@ router.register('seeker_profile', SeekersProfileView, basename="seekerprofile")
 
 urlpatterns = [
     path("list_all_users_account/", AdminAccessAccountDetails.as_view(), name='AdminAccessAccountDetails'),
-    path("list_all_recruiters_profile/", AdminAccessAccountRecruiterProfiles.as_view(), name='AdminAccessAccountRecruiterProfiles'),
-    # path('create_account/', UserAccountSignupSerializersView.as_view(), name='UserAccountSignupSerializersView'),
-    # path('login_account/', UserAccountLoginSerializersView.as_view(), name='UserAccountLoginSerializersView'),
-    # path('recruiter_profile/', RecruiterProfileView.as_view(), name='RecruiterProfileView'),
-    # path('seekers_profile/', SeekersProfileView.as_view(), name='SeekersProfileView'),
-    
+    path("list_all_recruiters_profile/", AdminAccessRecruiterProfilesDetails.as_view(), name='AdminAccessRecruiterProfilesDetails'),
+    path("list_all_seekers_profile/", AdminAccessSeekerProfilesDetails.as_view(), name='AdminAccessSeekerProfilesDetails'),
     path('', include(router.urls))
 ]

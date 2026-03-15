@@ -17,10 +17,15 @@ class AdminAccessAccountDetails(generics.ListAPIView):
     serializer_class = UserAccountSignupSerializers
     
 # Recruiter's profile
-class AdminAccessAccountRecruiterProfiles(generics.ListAPIView):
+class AdminAccessRecruiterProfilesDetails(generics.ListAPIView):
     permission_classes = [IsAdminUser]
     queryset = Recruiter.objects.all()
     serializer_class = RecruiterSerializers
+    
+class AdminAccessSeekerProfilesDetails(generics.ListAPIView):
+    permission_classes = [IsAdminUser]
+    queryset = Seeker.objects.all()
+    serializer_class = SeekerSerializers
 
 
 """ Account views """
@@ -102,3 +107,12 @@ class SeekersProfileView(viewsets.ViewSet):
         serializer.is_valid(raise_exception=True)
         if serializer:
             return SeekerProfile()._seekersprofilecreate(serializer, request.user)
+        
+    def retrieve(self, request, pk=None):
+        return
+    
+    def update(self, request, pk=None):
+        return
+    
+    def delete(self, request, pk=None):
+        return
