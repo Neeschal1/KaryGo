@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
 from .serializers import *
 from rest_framework import viewsets
 from ..services.auth import UserAuth
-from rest_framework import status, generics
-from rest_framework.response import Response
+from rest_framework import generics
 from ..services.recruiterProfile import RecruiterProfile
+from ..services.seekerProfile import SeekerProfile
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 
@@ -94,11 +93,12 @@ class RecruiterProfileView(viewsets.ViewSet):
     
 
 
-# # Seeker's Profile View
-# class SeekersProfileView(APIView):
-#     permission_classes = [IsAuthenticated]
-#     def post(self, request):
-#         serializer = SeekerSerializers(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         # serializer.save(ID = request.user)
-#         return Profile().SeekersProfile(serializer, request.user)
+# Seeker's Profile View
+class SeekersProfileView(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+    
+    def create(self, request):
+        serializer = SeekerSerializers(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        if serializer:
+            return SeekerProfile()._seekersprofilecreate(serializer, request.user)

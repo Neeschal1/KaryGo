@@ -22,10 +22,13 @@ class RecruiterProfile:
         return Response({"Message":f"Profile created for: {recruiter.Full_Name}"}, status=status.HTTP_201_CREATED)
     
     
+    
+    # Retrieve recruiter's existing profile
     def _recruiterprofileretrieve(self, pk, request):
         user = get_object_or_404(Recruiter, ID=pk)
         serializer = RecruiterSerializers(user)
         return Response({"Message":{"Data":serializer.data}})
+    
     
     
     # Update recruiter's existing profile
@@ -37,13 +40,10 @@ class RecruiterProfile:
             user_serializer.save()
             return Response({"Detail":{"Message":f"{user}'s account updated successfully :)", "Data":user_serializer.data}}, status=status.HTTP_200_OK)
         
+        
     
     # Delete recruiter's existing profile
     def _recruiterprofiledelete(self, pk, request):
         user = get_object_or_404(Recruiter, ID=pk)
         user.delete()
         return Response({"Message":"ID deleted successfully :)"})
-    
-    
-    
-

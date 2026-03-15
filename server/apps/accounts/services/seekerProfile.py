@@ -3,6 +3,8 @@ from rest_framework import status
 from ..models.entities import Seeker
 
 class SeekerProfile:
+    
+    # Create seeker's profile
     def _seekersprofilecreate(self, serializer, user):
         seeker = Seeker.objects.create(
             ID = user,
@@ -17,3 +19,7 @@ class SeekerProfile:
             Education = serializer.validated_data["Education"],
         )
         return Response({"Message":f"Profile created for: {seeker.Full_Name}"}, status=status.HTTP_201_CREATED)
+    
+    
+    
+    # Retrieve seeker's existing profile

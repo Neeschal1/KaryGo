@@ -33,3 +33,6 @@ class Seeker(Base):
     
     def __str__(self):
         return self.Full_Name
+    
+    
+# { "Full_Name":"Nysch All", "Website_or_Portfolio": "https://portfolio.aarav.com", "Image":"https://i.pinimg.com/736x/3b/4a/53/3b4a53d8429e6422411675fed554dedd.jpg", "Location": "Pokhara, Nepal", "Phone": "+977-9845671234", "Resume":"https://www.pdf24.org/en/","Skills": "Python, FastAPI, Machine Learning, Data Analysis", "Experience": "1.5 years working as backend developer in a startup", "Education": "BSc Computer Science" }

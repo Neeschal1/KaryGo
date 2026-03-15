@@ -12,7 +12,7 @@ router.register('account_modification', AccountModification, basename="modificat
 
 # profile routes
 router.register('recruiter_profile', RecruiterProfileView, basename="recruiterprofile")
-# router.register('')
+router.register('seeker_profile', SeekersProfileView, basename="seekerprofile")
 
 urlpatterns = [
     path("list_all_users_account/", AdminAccessAccountDetails.as_view(), name='AdminAccessAccountDetails'),
