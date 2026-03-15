@@ -100,7 +100,7 @@ class RecruiterProfileView(viewsets.ViewSet):
 
 # Seeker's Profile View
 class SeekersProfileView(viewsets.ViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     
     def create(self, request):
         serializer = SeekerSerializers(data=request.data)
@@ -109,7 +109,7 @@ class SeekersProfileView(viewsets.ViewSet):
             return SeekerProfile()._seekersprofilecreate(serializer, request.user)
         
     def retrieve(self, request, pk=None):
-        return
+        return SeekerProfile()._seekerprofileretrieve(request, pk)
     
     def update(self, request, pk=None):
         return

@@ -1,4 +1,4 @@
-from ..models.entities import Recruiter, Seeker
+from ..models.entities import Recruiter
 from ..api.serializers import *
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response

@@ -51,8 +51,9 @@ class RecruiterSerializers(serializers.ModelSerializer):
 class SeekerSerializers(serializers.ModelSerializer):
     class Meta:
         model = Seeker
-        fields = ["Website_or_Portfolio", "Full_Name", "Image", "Location", "Phone", "Resume", "Skills", "Experience", "Education"]
+        fields = ["ID", "Website_or_Portfolio", "Full_Name", "Image", "Location", "Phone", "Resume", "Skills", "Experience", "Education"]
         extra_kwargs = {
+            "ID": {"read_only": True},
             "Image": {"required": True},
             "Full_Name": {"required": True},
             "Website_or_Portfolio": {"required": True},
