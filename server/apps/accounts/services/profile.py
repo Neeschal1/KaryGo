@@ -2,7 +2,7 @@ from ..models.entities import Recruiter, Seeker
 from rest_framework.response import Response
 
 class Profile:
-    def RecruitersProfile(self, serializer, user):
+    def _RecruitersProfile(self, serializer, user):
         recruiter = Recruiter.objects.create(
             ID = user,
             Image = serializer.validated_data["Image"],
@@ -16,7 +16,7 @@ class Profile:
         )
         return Response({"Message":f"Profile created for: {recruiter.Full_Name}"})
 
-    def SeekersProfile(self, serializer, user):
+    def _SeekersProfile(self, serializer, user):
         seeker = Seeker.objects.create(
             ID = user,
             Image = serializer.validated_data["Image"],

@@ -59,41 +59,15 @@ class AccountModification(viewsets.ViewSet):
     def logout(self, request):
         return UserAuth()._logoutaccount(request)
 
-# Account signup view
-# class UserAccountSignupSerializersView(APIView):
-#     permission_classes = [AllowAny]
-#     def post(self, request):
-#         signup_serializer = UserAccountSignupSerializers(data=request.data)
-#         signup_serializer.is_valid(raise_exception=True)
-
-        # FirstName = signup_serializer.validated_data["first_name"]
-        # Email = signup_serializer.validated_data["email"]
-        # Username = signup_serializer.validated_data["username"]
-        # Password = signup_serializer.validated_data["password"]
-
-#         return UserAuth().signup(FirstName, Email, Username, Password)
-
-
-# Account login view
-# class UserAccountLoginSerializersView(APIView):
-#     permission_classes = [AllowAny]
-#     def post(self, request):
-#         login_serializer = UserAccountLoginSerializers(data=request.data)
-#         login_serializer.is_valid(raise_exception=True)
-
-#         email = login_serializer.validated_data["Email"]
-#         password = login_serializer.validated_data["Password"]
-
-#         return UserAuth().login(email, password)
-
 
 # # Recruiter Profile View
-# class RecruiterProfileView(APIView):
-#     permission_classes = [IsAuthenticated]
-#     def post(self, request):
-#         serializer = RecruiterSerializers(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         return Profile().RecruitersProfile(serializer, request.user)
+class RecruiterProfileView(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+    def create(self, request):
+        serializer = RecruiterSerializers(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        if serializer:
+            return Profile()._RecruitersProfile(serializer, request.user)
 
 
 # # Seeker's Profile View
