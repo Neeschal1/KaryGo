@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from ..services.auth import UserAuth
 from rest_framework import status, generics
 from rest_framework.response import Response
-from ..services.profile import Profile
+from ..services.recruiterProfile import RecruiterProfile
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 
@@ -62,12 +62,25 @@ class AccountModification(viewsets.ViewSet):
 
 # # Recruiter Profile View
 class RecruiterProfileView(viewsets.ViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+    
+    def list(self, request):
+        queryset = Recruiter.objects.all()
+        serializer = RecruiterSerializers(queryset, many=True)
+        return Response(serializer.data)
+    
     def create(self, request):
         serializer = RecruiterSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
         if serializer:
-            return Profile()._RecruitersProfile(serializer, request.user)
+            return RecruiterProfile()._recruiterscreateprofile(serializer, request.user)
+        
+    # def retrieve(self, request, pk=None):
+    #     return Profile()._recruiterprofileretrieve(pk, request)
+        
+    def update(self, request, pk=None):
+        return RecruiterProfile()._recruiterprofileupdate(pk, request)
+    
 
 
 # # Seeker's Profile View
