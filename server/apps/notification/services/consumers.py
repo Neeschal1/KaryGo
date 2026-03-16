@@ -8,9 +8,6 @@ class Regular_Notification(WebsocketConsumer):
     # creating a connection
     def connect(self):
         self.room_group_name = "broadcast"
-        
-        if self.channel_layer is None:
-            print("⚠️ channel_layer is None! Check CHANNEL_LAYERS in settings.py")
             
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,

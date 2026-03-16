@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # django channels
-    # "daphne",
     'channels',
     
     # installed packages
@@ -85,21 +84,10 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [{
-                "address": Config.REDIS_URL,
-                "ssl_cert_reqs": None,
-            }],
+            "hosts": [Config.REDIS_URL]
         },
     },
 }
-
-
-# # Channel setup
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
-#     }
-# }
 
 
 # JWT setup
