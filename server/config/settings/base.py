@@ -8,17 +8,18 @@ SECRET_KEY = Config.SECRET_KEY
 
 # Installed Apps
 INSTALLED_APPS = [
-    # django channels
-    # "daphne",
-    "channels",
+    'django.contrib.contenttypes',
     
     # default
-    'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.admin',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # django channels
+    # "daphne",
+    'channels',
     
     # installed packages
     'rest_framework',
@@ -77,6 +78,28 @@ CORS_ALLOW_METHODS = (
     "POST",
     "PUT",
 )
+
+
+# Channel redis
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [{
+                "address": Config.REDIS_URL,
+                "ssl_cert_reqs": None,
+            }],
+        },
+    },
+}
+
+
+# # Channel setup
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#     }
+# }
 
 
 # JWT setup

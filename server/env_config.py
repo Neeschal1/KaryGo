@@ -8,3 +8,5 @@ class Config:
     MONGODB_ENGINE = os.getenv('MONGO_ENGINE')
     MONGODB_NAME = os.getenv('MONGODB_NAME')
     MONGODB_HOST = os.getenv('MONGO_HOST')
+    
+    REDIS_URL = os.getenv('REDIS_URL')
