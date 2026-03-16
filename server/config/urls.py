@@ -27,7 +27,9 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.accounts.api.urls')),
-    # path('jobs/', include('apps.jobs.urls')),
+    path('jobs/', include('apps.jobs.api.urls')),
+    path('notification/', include('apps.notification.api.urls')),
+    path('chats/', include('apps.chats.api.urls')),
     
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

@@ -8,6 +8,11 @@ SECRET_KEY = Config.SECRET_KEY
 
 # Installed Apps
 INSTALLED_APPS = [
+    # django channels
+    # "daphne",
+    "channels",
+    
+    # default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -23,8 +28,9 @@ INSTALLED_APPS = [
     
     # installed apps
     'apps.accounts',
-    # 'apps.jobs',
-    # 'apps.products',
+    'apps.jobs',
+    'apps.notification',
+    'apps.chats',
 ]
 
 
