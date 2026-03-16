@@ -1,10 +1,7 @@
 import SplashScreen from "./splashscreen";
 import Welcome from "./welcome";
 import Login from "./login";
-import SignupSplash from "./signupsplash";
-import Email from "./email";
-import OTP from "./otp";
-import Password from "./password";
+import Signup from "./signup";
 import Profile from "./profile";
 import Home from './home'
 import Resume from './resume'
@@ -14,10 +11,7 @@ export {
   Home,
   Welcome,
   Login,
-  SignupSplash,
-  Email,
-  OTP,
-  Password,
+  Signup,
   Profile,
   Resume,
 };

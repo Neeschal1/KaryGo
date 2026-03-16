@@ -2,21 +2,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 import {
   SplashScreen,
   Welcome,
-  Email,
-  SignupSplash,
   Login,
-  Otp,
-  Password,
   Home,
   Resume,
   Profile,
+  Signup,
 } from "../screens/Layout";
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="Signup"
       screenOptions={{ headerShown: false, animation: "fade_from_right" }}
     >
       <Stack.Screen name="Splash" component={SplashScreen} />
@@ -31,17 +28,12 @@ const StackNavigation = () => {
           headerTintColor: "#FFFFFF",
         }}
       />
-      <Stack.Screen
-        // options={{
-        //     headerShown: true,
-        //     headerTransparent: true,
-        //     headerTitle: " ",
-        //     headerTintColor: '#000000'
-        //   }}
-        name="SignupSplash"
-        component={SignupSplash}
-      />
-      <Stack.Screen name="Email" component={Email} />
+      <Stack.Screen name="Signup" component={Signup} options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: " ",
+          headerTintColor: "#000000",
+        }}/>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Resume" component={Resume} />
     </Stack.Navigator>

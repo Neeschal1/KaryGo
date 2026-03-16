@@ -36,7 +36,7 @@ const Welcome = () => {
           </View>
           <View className="w-full gap-mid">
             <SecondaryButton text="Login" navigatingScreen="Login" />
-            <PrimaryButton text="Get Started" navigatingScreen="SignupSplash" />
+            <PrimaryButton text="Get Started" navigatingScreen="Signup" />
           </View>
           <View className="flex flex-row gap-extrasmall items-center justify-center">
             <TextualButtonSecondary text="KaryGo" navigatingScreen={" "} />
