@@ -7,7 +7,7 @@ from rest_framework import status
 class RecruiterProfile:
     
     # Create recruiter's profile
-    def _recruiterscreateprofile(self, serializer, user):
+    def _recruiterscreateprofile(self, serializer, user) -> Response:
         recruiter = Recruiter.objects.create(
             ID = user,
             Image = serializer.validated_data["Image"],
@@ -24,7 +24,7 @@ class RecruiterProfile:
     
     
     # Retrieve recruiter's existing profile
-    def _recruiterprofileretrieve(self, pk, request):
+    def _recruiterprofileretrieve(self, pk, request) -> Response:
         user = get_object_or_404(Recruiter, ID=pk)
         serializer = RecruiterSerializers(user)
         return Response({"Message":{"Data":serializer.data}}, status=status.HTTP_200_OK)
@@ -32,7 +32,7 @@ class RecruiterProfile:
     
     
     # Update recruiter's existing profile
-    def _recruiterprofileupdate(self, pk, request):
+    def _recruiterprofileupdate(self, pk, request) -> Response:
         user = get_object_or_404(Recruiter, ID=pk)
         user_serializer = RecruiterSerializers(user, data=request.data, partial=True)
         user_serializer.is_valid(raise_exception=True)
@@ -43,7 +43,7 @@ class RecruiterProfile:
         
     
     # Delete recruiter's existing profile
-    def _recruiterprofiledelete(self, pk, request):
+    def _recruiterprofiledelete(self, pk, request) -> Response:
         user = get_object_or_404(Recruiter, ID=pk)
         user.delete()
         return Response({"Message":"ID deleted successfully :)"}, status=status.HTTP_204_NO_CONTENT)

@@ -8,7 +8,7 @@ from ..models.entities import Seeker
 class SeekerProfile:
     
     # Create seeker's profile
-    def _seekersprofilecreate(self, serializer, user):
+    def _seekersprofilecreate(self, serializer, user) -> Response:
         seeker = Seeker.objects.create(
             ID = user,
             Image = serializer.validated_data["Image"],
@@ -26,7 +26,7 @@ class SeekerProfile:
     
     
     # Retrieve seeker's existing profile
-    def _seekerprofileretrieve(self, request, pk):
+    def _seekerprofileretrieve(self, request, pk) -> Response:
         user = get_object_or_404(Seeker, ID=pk)
         serializer = SeekerSerializers(user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
@@ -35,7 +35,7 @@ class SeekerProfile:
         
         
     # Update seeker's existing profile
-    def _seekerprofileupdate(self, request, pk):
+    def _seekerprofileupdate(self, request, pk) -> Response:
         user = get_object_or_404(Seeker, ID=pk)
         serializer = SeekerSerializers(user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
@@ -46,7 +46,7 @@ class SeekerProfile:
     
     
     # Delete seeker's existing profile
-    def _seekerprofiledelete(self, request, pk):
+    def _seekerprofiledelete(self, request, pk) -> Response:
         user = get_object_or_404(Seeker, ID=pk)
         user.delete()
         return Response({"Message":"ID deleted successfully :)"}, status=status.HTTP_204_NO_CONTENT)

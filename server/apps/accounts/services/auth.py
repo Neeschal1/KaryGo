@@ -8,7 +8,7 @@ from rest_framework import status
 
 class UserAuth:
     # Login an account
-    def _login(self, email, password):
+    def _login(self, email: str, password: str) -> Response:
         if not User.objects.filter(email = email).exists():
             return Response({"Message":"User didn't found with the email provided. So sorry for your inconvenience :("})
         user = User.objects.get(email = email)
@@ -28,7 +28,7 @@ class UserAuth:
     
     
     # Signing up a new account
-    def _signup(self, firstname, email, username, password, number_of_users):
+    def _signup(self, firstname: str, email: str, username: str, password: str, number_of_users: int) -> Response:
         if (User.objects.filter(email=email).exists()):
             return Response({"Message":"An account is already signed up with the entered email. Please choose another account. Thank you :)"})
         
@@ -54,7 +54,7 @@ class UserAuth:
     
     
     # Updating the current account
-    def _updateaccount(self, pk, request):
+    def _updateaccount(self, pk: int, request) -> Response:
         user_detail = get_object_or_404(User, pk=pk)
         update_serializer = UserAccountSignupSerializers(user_detail, data=request.data, partial=True)
         if update_serializer.is_valid(raise_exception=True):
@@ -64,7 +64,7 @@ class UserAuth:
     
     
     # Retrieving user's account detail
-    def _retrievedata(self, pk):
+    def _retrievedata(self, pk: int, response) -> Response:
         user = get_object_or_404(User, pk=pk)
         serializer = UserAccountSignupSerializers(user)
         return Response(serializer.data)
@@ -72,7 +72,7 @@ class UserAuth:
     
     
     # Deleting user's account
-    def _deleteaccount(self, pk):
+    def _deleteaccount(self, pk) -> Response:
         user = get_object_or_404(User, pk=pk)
         user.delete()
         return Response({"Message": "Account deleted successfully :)"},status=status.HTTP_204_NO_CONTENT)
@@ -80,7 +80,7 @@ class UserAuth:
     
     
     # Logging out from an account
-    def _logoutaccount(self, request):
+    def _logoutaccount(self, request) -> Response:
         refresh_token = request.data.get("refreshtoken")
         if refresh_token:
             try:
