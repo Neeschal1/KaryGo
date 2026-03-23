@@ -4,6 +4,7 @@ import Login from "./login";
 import Signup from "./signup";
 import Profile from "./profile";
 import Home from './home'
+import AddJobs from './addJobs'
 import Resume from './resume'
 
 export {
@@ -14,4 +15,5 @@ export {
   Signup,
   Profile,
   Resume,
+  AddJobs,
 };

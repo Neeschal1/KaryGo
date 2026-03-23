@@ -8,12 +8,15 @@ import {
   Profile,
   Signup,
 } from "../screens/Layout";
+
+import TabNavigation from './tabNavigation'
+
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Signup"
+      initialRouteName="TabNavigation"
       screenOptions={{ headerShown: false, animation: "fade_from_right" }}
     >
       <Stack.Screen name="Splash" component={SplashScreen} />
@@ -36,6 +39,12 @@ const StackNavigation = () => {
         }}/>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Resume" component={Resume} />
+      <Stack.Screen name="TabNavigation" component={TabNavigation} options={{
+          headerShown: false,
+          headerTransparent: true,
+          headerTitle: " ",
+          headerTintColor: "#000000",
+        }}/>
     </Stack.Navigator>
   );
 };
