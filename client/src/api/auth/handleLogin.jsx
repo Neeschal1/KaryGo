@@ -25,7 +25,7 @@ const HandleLogin = async ({
     const message = res.data.Message;
 
     if (message == "Login successful :)") {
-      navigation.navigate("Home");
+      navigation.navigate("TabNavigation");
     } else {
       setError(true);
       setErrorMessage(message);

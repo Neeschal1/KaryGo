@@ -6,6 +6,8 @@ import Profile from "./profile";
 import Home from './home'
 import AddJobs from './addJobs'
 import Resume from './resume'
+import Community from './community'
+import Chats from './chats'
 
 export {
   SplashScreen,
@@ -16,4 +18,6 @@ export {
   Profile,
   Resume,
   AddJobs,
+  Community,
+  Chats,
 };
