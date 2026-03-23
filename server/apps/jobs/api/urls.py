@@ -1,9 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from django.http import HttpResponse
+from rest_framework import routers
+from .views import *
 
-def homeView(request):
-    return HttpResponse("This is home view of job app. Welcome :)")
+router = routers.DefaultRouter()
+router.register("create_job_post", JobSerializersView, basename='jobcreation')
 
 urlpatterns = [
-    path('', homeView, name='homeview')
+    path('', include(router.urls))
 ]
