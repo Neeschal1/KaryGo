@@ -6,7 +6,7 @@ import {
   BorderButton,
 } from "./buttons";
 import { AuthTextCustomInput, AuthPasswordCustomInput } from "./textInput";
-import { DescriptiveText, TitleText, SubTitleText } from "./texts";
+import { DescriptiveText, TitleText, SubTitleText, ErrorText } from "./texts";
 
 export {
   PrimaryButton,
@@ -18,5 +18,6 @@ export {
   AuthPasswordCustomInput,
   DescriptiveText,
   TitleText, 
-  SubTitleText
+  SubTitleText, 
+  ErrorText
 };

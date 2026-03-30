@@ -37,6 +37,8 @@ const HandleSignup = async ({
     }
   } else {
     setErrorMessage("Your password and confirm password doesnot matches. Check them and try again!")
+    setError(true)
+    console.log("Your password and confirm password doesnot matches. Check them and try again!")
   }
 };
 

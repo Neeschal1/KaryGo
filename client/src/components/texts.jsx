@@ -24,3 +24,10 @@ export const DescriptiveText = ({text}) => {
     )
 }
 
+export const ErrorText = ({text}) => {
+    return (
+        <View>
+            <Text className="text-red-500 font-description font-Quicksandmedium">{text}</Text>
+        </View>
+    )
+}

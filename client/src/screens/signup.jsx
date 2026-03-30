@@ -13,12 +13,12 @@ import {
   DescriptiveText,
   TitleText,
   SubTitleText,
+  ErrorText,
 } from "@/src/components/systemComponentLayout";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 
 const logo = require("@/src/assets/images/mainlogo.png");
-const LoginBG = require("@/src/assets/images/loginBG.png");
 const GoogleIcon = require("@/src/assets/images/google.png");
 
 const Signup = () => {
@@ -34,11 +34,6 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
-
-  const handleSignup = () => {
-    if (password == confirmPassword) {
-    }
-  };
 
   return (
     <SafeAreaView className="flex-1 bg-background">
@@ -78,7 +73,7 @@ const Signup = () => {
                 />
               </View>
               <View className="w-full gap-small">
-                <SubTitleText text="Password" />
+                {error ? <ErrorText text="Password must match with Confirm Password" /> : <SubTitleText text="Password" />}
                 <AuthPasswordCustomInput
                   placeholderText="Enter your password"
                   valueText={password}
@@ -86,7 +81,7 @@ const Signup = () => {
                 />
               </View>
               <View className="w-full gap-small">
-                <SubTitleText text="Confirm Password" />
+                  {error ? <ErrorText text="Confirm Password must match with Password" /> : <SubTitleText text="Confirm Password" />}
                 <AuthPasswordCustomInput
                   placeholderText="Enter your password"
                   valueText={confirmPassword}
