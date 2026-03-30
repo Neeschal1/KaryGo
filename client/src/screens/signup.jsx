@@ -1,5 +1,6 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import Checkbox from "expo-checkbox";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HandleSignup from "@/src/api/auth/handleSignup";
@@ -28,6 +29,8 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [checked, setChecked] = useState(false)
+
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -43,7 +46,7 @@ const Signup = () => {
             <Image source={logo} />
             <DescriptiveText text="Begin to KaryGo by creating a fresh account." />
           </View>
-          <View className="w-full items-end gap-small">
+          <View className="w-full items-start gap-small">
             <View className="w-full gap-mid">
               <View className="w-full gap-small">
                 <SubTitleText text="Full Name" />
@@ -89,7 +92,10 @@ const Signup = () => {
                 />
               </View>
             </View>
-            {/* Checkbox */}
+            <View className="flex flex-row gap-3 mt-5">
+              <Checkbox value={checked} onValueChange={setChecked}/>
+              <SubTitleText text="Remember me!" />
+            </View>
           </View>
           <PrimaryButton
             loading={loading}
@@ -101,6 +107,7 @@ const Signup = () => {
               username,
               password,
               confirmPassword,
+              checked,
               setLoading,
               setError,
               setErrorMessage,
@@ -130,7 +137,7 @@ const Signup = () => {
                   Continue with Apple
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity className="border-[#626262] border rounded-button w-full items-center flex-row justify-center">
+              <TouchableOpacity onPress={()=>{navigation.navigate("TabNavigation")}} className="border-[#626262] border rounded-button w-full items-center flex-row justify-center">
                 <Image source={GoogleIcon} />
                 <Text className="font-Quicksandmedium text-black text-xl py-4 px-5">
                   Continue with Google
