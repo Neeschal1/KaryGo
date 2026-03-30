@@ -32,7 +32,7 @@ urlpatterns = [
     
     # installed local applications
     path('accounts/', include('apps.accounts.api.urls')),
-    path('jobs/', include('apps.jobs.api.urls')),
+   #  path('jobs/', include('apps.jobs.api.urls')),
     path('notification/', include('apps.notification.api.urls')),
     path('chats/', include('apps.chats.api.urls')),
     

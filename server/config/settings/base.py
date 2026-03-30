@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     
     # installed apps
     'apps.accounts',
-    'apps.jobs',
+    # 'apps.jobs',
     'apps.notification',
     'apps.chats',
 ]
