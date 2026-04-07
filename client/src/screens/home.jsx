@@ -21,7 +21,7 @@ const Home = () => {
   const navigation = useNavigation();
 
   const handleLogout = async () => {
-    const removeToken = await AsyncStorage.removeItem("accessJWTToken");
+    await AsyncStorage.removeItem("accessJWTToken");
     navigation.navigate("Welcome");
   };
 

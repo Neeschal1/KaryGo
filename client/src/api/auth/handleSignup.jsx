@@ -27,25 +27,28 @@ const HandleSignup = async ({
   if (password == confirmPassword) {
     setLoading(true);
     try {
-      const res = await axios.post(`${url}accounts/account_signup/`, data, {
+      const res = await axios.post(`${url}
+/accounts/account_signup/`, data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
 
+      console.log("Data: ", data)
+      console.log("Response: ", res.data.Tokens)
+
       if (checked == true) {
-        const accessToken = res.data.Message.Tokens.accesstoken;
-        const refreshToken = res.data.Message.Tokens.refreshtoken;
+        const accessToken = res.data?.Tokens?.accesstoken;
+        const refreshToken = res.data?.Tokens?.refreshtoken;
 
         await AsyncStorage.setItem("accesstoken", accessToken)
         await AsyncStorage.setItem("refreshtoken", refreshToken)
 
       }
-
       console.log("Access Token: ", accessToken, "\nRefresh Token: ", refreshToken);
 
     } catch (err) {
-      console.log(err);
+      console.log("Error occured: ", err.response?.data);
     } finally {
       setLoading(false);
     }
