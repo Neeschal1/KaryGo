@@ -61,3 +61,11 @@ const HandleSignup = async ({
 };
 
 export default HandleSignup;
+
+
+// {
+//     "first_name": "Vrikshya Ghimire",
+//     "username": "vrikshya001",
+//     "email": "vrikshya001@gmail.com",
+//     "password": "vrikshya12"
+// }

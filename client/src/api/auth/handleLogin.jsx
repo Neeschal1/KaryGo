@@ -1,4 +1,5 @@
 import url from "../../utils/api_url";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 const HandleLogin = async ({
@@ -16,13 +17,21 @@ const HandleLogin = async ({
   };
 
   try {
+    console.log(userDetails)
     setLoading(true);
-    const res = await axios.post(`${url}accounts/login_account/`, userDetails, {
+    const res = await axios.post(`${url}accounts/account_login/`, userDetails, {
       headers: {
         "Content-Type": "application/json",
       },
     });
     const message = res.data.Message;
+
+    const accessJWT = res.data?.Tokens?.accesstoken
+    const refreshJWT = res.data?.Tokens?.refreshtoken
+    console.log("Access Token: ", accessJWT, "\nRefresh Token: ", refreshJWT)
+
+    await AsyncStorage.setItem("accessJWTToken", accessJWT)
+    await AsyncStorage.setItem("refreshJWTToken", refreshJWT)
 
     if (message == "Login successful :)") {
       navigation.navigate("TabNavigation");
