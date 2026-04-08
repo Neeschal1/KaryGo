@@ -1,9 +1,4 @@
 from django.contrib import admin
-
-from env_config import Config
-from django.http import HttpResponse
-from django.core.mail import send_mail
-
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenVerifyView
 from .asgi import *

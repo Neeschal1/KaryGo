@@ -1,6 +1,9 @@
 import random
+from env_config import Config
+from django.core.mail import send_mail
 from ..api.serializers import *
 from ..models.entities import *
+from .email_modifications import emailwall
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password, check_password
@@ -45,12 +48,20 @@ class UserAuth:
             is_active = False
         )
         
-        OTP.objects.create(email = user, otp = random.randint(100000, 999999))
-        
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
         refresh_token = str(refresh)
         
+        randominteger = random.randint(100000, 999999)
+        OTP.objects.create(email = user, otp = randominteger)
+        
+        subject = "🚀 Welcome to KaryGo! Verify Your Email to Get Started"
+        message = "HTML Testing..."
+        from_email = Config.EMAIL_FROM
+        recipient_list = [user.email]
+        htmlmessage = emailwall(firstname, randominteger)
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=htmlmessage)
+    
         if not user:
             return Response({"Message":"User's account not created. Please try again later :("})
             
@@ -73,7 +84,8 @@ class UserAuth:
         
         user.is_active = True
         user.save()
-        # otp_from_db.delete()
+        otp_from_db.delete()
+        
         return Response({"Message":"You are now verified :)"})
 
     
