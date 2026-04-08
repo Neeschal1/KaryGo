@@ -8,7 +8,7 @@ class OTP(models.Model):
     otp = models.IntegerField(blank=False)
     
     def __str__(self):
-        return self.email
+        return self.email.email
 
 
 # Base class for both Recruiter and Job Seeker

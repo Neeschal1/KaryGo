@@ -3,24 +3,37 @@ from rest_framework import serializers
 from ..models.entities import Recruiter, Seeker, OTP
 
 
+# Account signup serializer
 class UserAccountSignupSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "first_name", "username", "email", "password"]
+        fields = ["id", "first_name", "username", "email", "password", "is_active"]
         extra_kwargs = {
             "id": {"read_only": True},
             "first_name": {"required": True},
             "username": {"required": True},
             "email": {"required": True},
             "password": {"required": True, "write_only": True},
+            "is_active" : {"read_only": True}
+        }
+        
+# OTP verification serializer
+class OTPVerificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OTP
+        fields = ['email', 'otp']
+        extra_kwargs = {
+            'email' : {'read_only': True}
         }
 
 
+# Account login serializer
 class UserAccountLoginSerializers(serializers.Serializer):
     Email = serializers.EmailField()
     Password = serializers.CharField(style={'input_type': 'password'})
 
 
+# Recruiter's Profile serializer
 class RecruiterSerializers(serializers.ModelSerializer):
     class Meta:
         model = Recruiter
@@ -48,6 +61,7 @@ class RecruiterSerializers(serializers.ModelSerializer):
         }
 
 
+# Seeker's Profile serializer
 class SeekerSerializers(serializers.ModelSerializer):
     class Meta:
         model = Seeker

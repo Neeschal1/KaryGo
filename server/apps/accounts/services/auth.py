@@ -1,4 +1,6 @@
+import random
 from ..api.serializers import *
+from ..models.entities import *
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password, check_password
@@ -39,8 +41,11 @@ class UserAuth:
             first_name = firstname,
             email = email,
             username = username,
-            password = make_password(password)
+            password = make_password(password),
+            is_active = False
         )
+        
+        OTP.objects.create(email = user, otp = random.randint(100000, 999999))
         
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
@@ -51,6 +56,26 @@ class UserAuth:
             
         return Response({"Message":{"Account Detail": f"Account created successfully for {user.first_name}", "Tokens": {"accesstoken":access_token, "refreshtoken": refresh_token}}, "Total number of users": number_of_users}, status = status.HTTP_201_CREATED)
     
+    
+    
+    # otp
+    def _otp(self, email: str, otp: int) -> Response:
+        try:
+            user = User.objects.get(email = email)
+        except User.DoesNotExist:
+            return Response({"Message":"User doesnot exists. Please create an account first in order to continue :("})
+        
+        if user:
+            otp_from_db = OTP.objects.filter(email = email, otp = otp).first()
+            
+        if not otp_from_db:
+            return Response({"Message":"OTP didn't matched. You are not verified. Sorry :("})
+        
+        user.is_active = True
+        user.save()
+        # otp_from_db.delete()
+        return Response({"Message":"You are now verified :)"})
+
     
     
     # Updating the current account
