@@ -37,6 +37,12 @@ const StackNavigation = () => {
           headerTitle: " ",
           headerTintColor: "#000000",
         }}/>
+      <Stack.Screen name="Otp" component={Signup} options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: " ",
+          headerTintColor: "#000000",
+        }}/>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Resume" component={Resume} />
       <Stack.Screen name="TabNavigation" component={TabNavigation} options={{

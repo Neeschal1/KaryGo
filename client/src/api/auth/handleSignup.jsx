@@ -27,26 +27,27 @@ const HandleSignup = async ({
   if (password == confirmPassword) {
     setLoading(true);
     try {
-      const res = await axios.post(`${url}
-/accounts/account_signup/`, data, {
-        headers: {
-          "Content-Type": "application/json",
+      const res = await axios.post(
+        `${url}/accounts/account_signup/`, data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
-      console.log("Data: ", data)
-      console.log("Response: ", res.data.Tokens)
+      const returnMessage = res?.data?.Message
+      console.log("Return Message: ", returnMessage)
 
       if (checked == true) {
-        const accessToken = res.data?.Tokens?.accesstoken;
-        const refreshToken = res.data?.Tokens?.refreshtoken;
-
-        await AsyncStorage.setItem("accesstoken", accessToken)
-        await AsyncStorage.setItem("refreshtoken", refreshToken)
-
+        const accessJWT = res?.data?.Message?.Tokens?.accesstoken;
+        const refreshJWT = res?.data?.Message?.Tokens?.refreshtoken;
+        await AsyncStorage.setItem("accessJWTToken", accessJWT);
+        await AsyncStorage.setItem("refreshJWTToken", refreshJWT);
+        navigation.navigate("Otp")
       }
-      console.log("Access Token: ", accessToken, "\nRefresh Token: ", refreshToken);
 
+      navigation.navigate("Otp")
+    
     } catch (err) {
       console.log("Error occured: ", err.response?.data);
     } finally {
@@ -64,5 +65,3 @@ const HandleSignup = async ({
 };
 
 export default HandleSignup;
-
-
