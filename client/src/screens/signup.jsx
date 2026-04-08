@@ -128,7 +128,7 @@ const Signup = () => {
             <View className="gap-small w-full flex">
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("Resume");
+                  navigation.navigate("Otp");
                 }}
                 className="bg-black rounded-button w-full items-center flex-row justify-center"
               >

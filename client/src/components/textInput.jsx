@@ -17,6 +17,7 @@ export const AuthTextCustomInput = ({
   );
 };
 
+
 export const AuthPasswordCustomInput = ({
   placeholderText,
   valueText,

@@ -7,6 +7,7 @@ import {
   Resume,
   Profile,
   Signup,
+  Otp,
 } from "../screens/Layout";
 
 import TabNavigation from './tabNavigation'
@@ -37,7 +38,7 @@ const StackNavigation = () => {
           headerTitle: " ",
           headerTintColor: "#000000",
         }}/>
-      <Stack.Screen name="Otp" component={Signup} options={{
+      <Stack.Screen name="Otp" component={Otp} options={{
           headerShown: true,
           headerTransparent: true,
           headerTitle: " ",
