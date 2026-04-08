@@ -1,6 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+# Otp verification
+class OTP(models.Model):
+    email = models.OneToOneField(User, on_delete=models.CASCADE)
+    otp = models.IntegerField(blank=False)
+    
+    def __str__(self):
+        return self.email
+
+
 # Base class for both Recruiter and Job Seeker
 class Base(models.Model):
     ID = models.OneToOneField(User, on_delete=models.CASCADE)

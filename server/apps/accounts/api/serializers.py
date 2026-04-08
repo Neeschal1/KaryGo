@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from ..models.entities import Recruiter, Seeker
+from ..models.entities import Recruiter, Seeker, OTP
 
 
 class UserAccountSignupSerializers(serializers.ModelSerializer):
