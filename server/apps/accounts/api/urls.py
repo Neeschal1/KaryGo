@@ -7,7 +7,7 @@ router = DefaultRouter()
 
 # acounts routes
 router.register('account_signup', UserAccountSignupSerializersView, basename="useraccounts")
-router.register('account_otp', OTPVerificationSerializerView, basename="userotp")
+# router.register('account_otp', OTPVerificationSerializerView, basename="userotp")
 router.register('account_login', UserAccountLoginSerializerView, basename="accountlogin")
 router.register('account_modification', AccountModification, basename="modification")
 

@@ -48,16 +48,16 @@ class UserAccountSignupSerializersView(viewsets.ViewSet):
         
 
 # OTP
-class OTPVerificationSerializerView(viewsets.ViewSet):
-    permission_classes = [AllowAny]
+# class OTPVerificationSerializerView(viewsets.ViewSet):
+#     permission_classes = [AllowAny]
     
-    @swagger_auto_schema(request_body=UserAccountLoginSerializers)
-    def create(self, request):
-        otpverification = OTPVerificationSerializer(data = request.data)
-        if otpverification.is_valid(raise_exception=True):
-            Email = otpverification.validated_data['email']
-            Otp = otpverification.validated_data['otp']
-            return UserAuth()._otp(Email, Otp)
+#     @swagger_auto_schema(request_body=OTPVerificationSerializer)
+#     def create(self, request):
+#         otpverification = OTPVerificationSerializer(data = request.data)
+#         if otpverification.is_valid(raise_exception=True):
+#             Email = otpverification.validated_data['email']
+#             Otp = otpverification.validated_data['otp']
+#             return UserAuth()._otp(Email, Otp)
 
  
 # Login         

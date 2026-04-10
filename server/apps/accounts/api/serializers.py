@@ -18,13 +18,14 @@ class UserAccountSignupSerializers(serializers.ModelSerializer):
         }
         
 # OTP verification serializer
-class OTPVerificationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OTP
-        fields = ['email', 'otp']
-        extra_kwargs = {
-            'email' : {'read_only': True}
-        }
+# class OTPVerificationSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = OTP
+#         fields = ['email', 'otp']
+#         extra_kwargs = {
+#             'email' : {'required': True},
+#             'otp' : {'required': True},
+#         }
 
 
 # Account login serializer

@@ -52,15 +52,15 @@ class UserAuth:
         access_token = str(refresh.access_token)
         refresh_token = str(refresh)
         
-        randominteger = random.randint(100000, 999999)
-        OTP.objects.create(email = user, otp = randominteger)
+        # randominteger = random.randint(100000, 999999)
+        # OTP.objects.create(email = user, otp = randominteger)
         
-        subject = "🚀 Welcome to KaryGo! Verify Your Email to Get Started"
-        message = "HTML Testing..."
-        from_email = Config.EMAIL_FROM
-        recipient_list = [user.email]
-        htmlmessage = emailwall(firstname, randominteger)
-        send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=htmlmessage)
+        # subject = "🚀 Welcome to KaryGo! Verify Your Email to Get Started"
+        # message = "HTML Testing..."
+        # from_email = Config.EMAIL_FROM
+        # recipient_list = [user.email]
+        # htmlmessage = emailwall(firstname, randominteger)
+        # send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=htmlmessage)
     
         if not user:
             return Response({"Message":"User's account not created. Please try again later :("})
