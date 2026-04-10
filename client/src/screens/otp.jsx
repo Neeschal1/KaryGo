@@ -8,6 +8,7 @@ import {
   TextualButtonPrimary,
   ErrorText,
 } from "../components/systemComponentLayout";
+import { useNavigation } from "@react-navigation/native";
 
 const logo = require("@/src/assets/images/mainlogo.png");
 
@@ -103,7 +104,7 @@ const Otp = () => {
           //   setLoading,
           //   setError,
           //   setErrorMessage,
-          //   navigation,
+            navigatingScreen="TabNavigation"
           // }}
         />
         <View>

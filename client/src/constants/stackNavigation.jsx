@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 const StackNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="TabNavigation"
       screenOptions={{ headerShown: false, animation: "fade_from_right" }}
     >
       <Stack.Screen name="Splash" component={SplashScreen} />

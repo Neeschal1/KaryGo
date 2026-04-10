@@ -1,5 +1,14 @@
 import { View, Text } from "react-native"
 
+export const Title = ({text}) => {
+    return (
+        <View>
+            <Text className="text-darktext text-xl font-Quicksandsemibold">{text}</Text>
+        </View>
+    )
+}
+
+
 export const TitleText = ({text}) => {
     return (
         <View>

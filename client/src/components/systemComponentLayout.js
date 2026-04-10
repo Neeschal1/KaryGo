@@ -4,9 +4,10 @@ import {
   TextualButtonPrimary,
   TextualButtonSecondary,
   BorderButton,
+  ApplyButton
 } from "./buttons";
 import { AuthTextCustomInput, AuthPasswordCustomInput } from "./textInput";
-import { DescriptiveText, TitleText, SubTitleText, ErrorText } from "./texts";
+import { DescriptiveText, TitleText, SubTitleText, ErrorText, Title } from "./texts";
 
 export {
   PrimaryButton,
@@ -14,6 +15,8 @@ export {
   TextualButtonPrimary,
   TextualButtonSecondary,
   BorderButton,
+  Title,
+  ApplyButton,
   AuthTextCustomInput,
   AuthPasswordCustomInput,
   DescriptiveText,

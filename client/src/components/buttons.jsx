@@ -108,3 +108,13 @@ export const BorderButton = ({ text, navigatingScreen }) => {
     </TouchableOpacity>
   );
 };
+
+export const ApplyButton = ({text}) => {
+  return (
+    <TouchableOpacity className="bg-primary rounded-button w-full items-center">
+      <Text className="font-Quicksandbold text-white text-subheading py-3 px-3">
+        {text}
+      </Text>
+    </TouchableOpacity>
+  )
+}
