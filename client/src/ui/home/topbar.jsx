@@ -7,6 +7,7 @@ import {
   TitleText,
 } from "@/src/components/systemComponentLayout";
 import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const profileImage = require("@/src/assets/images/profile.jpg");
 
@@ -31,16 +32,19 @@ const categorySection = [
 
 const Topbar = () => {
   const [selectedButton, setSelectedButton] = useState(1);
+  const navigation = useNavigation()
 
   return (
     <View className="flex flex-1">
       <View className="flex gap-3">
         <View className="flex-1 items-center justify-center bg-background flex-row gap-3">
-          <Image
-            style={{ height: 50, width: 50, borderRadius: 50 }}
-            className=""
-            source={profileImage}
-          />
+          <TouchableOpacity onPress={()=>{navigation.navigate("Profile")}}>
+            <Image
+              style={{ height: 50, width: 50, borderRadius: 50 }}
+              className=""
+              source={profileImage}
+            />
+          </TouchableOpacity>
           <View>
             <Text className="font-Quicksandsemibold text-2xl">
               Good Morning, Diya 👋
@@ -61,16 +65,21 @@ const Topbar = () => {
         <ScrollView horizontal={true}>
           {categorySection.map((index) => (
             <View key={index.id} className="flex flex-1">
-              <TouchableOpacity onPress={()=>{setSelectedButton(index.id)}} className={`${selectedButton === index.id ? "bg-[#1362E9]" : "border border-[#1362E9]"} rounded-full ml-2 px-8 py-4`}>
+              <TouchableOpacity
+                onPress={() => {
+                  setSelectedButton(index.id);
+                }}
+                className={`${selectedButton === index.id ? "bg-[#1362E9]" : "border border-[#1362E9]"} rounded-full ml-2 px-8 py-4`}
+              >
                 <Text
-          className={`font-Quicksandmedium ${
-            selectedButton === index.id
-              ? "text-white"
-              : "text-[#1362E9]"
-          }`}
-        >
-          {index.sectionName}
-        </Text>
+                  className={`font-Quicksandmedium ${
+                    selectedButton === index.id
+                      ? "text-white"
+                      : "text-[#1362E9]"
+                  }`}
+                >
+                  {index.sectionName}
+                </Text>
               </TouchableOpacity>
             </View>
           ))}

@@ -38,15 +38,16 @@ const HandleSignup = async ({
       const returnMessage = res?.data?.Message
       console.log("Return Message: ", returnMessage)
 
-      if (checked == true) {
+      if (checked === true) {
         const accessJWT = res?.data?.Message?.Tokens?.accesstoken;
         const refreshJWT = res?.data?.Message?.Tokens?.refreshtoken;
         await AsyncStorage.setItem("accessJWTToken", accessJWT);
         await AsyncStorage.setItem("refreshJWTToken", refreshJWT);
-        navigation.navigate("Otp")
+        navigation.navigate("TabNavigation")
+      } else {
+        navigation.navigate("Login")
       }
 
-      navigation.navigate("Otp")
     
     } catch (err) {
       console.log("Error occured: ", err.response?.data);

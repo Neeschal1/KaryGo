@@ -52,6 +52,7 @@ const StackNavigation = () => {
           headerTitle: " ",
           headerTintColor: "#000000",
         }}/>
+        <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 };

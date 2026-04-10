@@ -36,11 +36,6 @@ import { ScrollView } from "react-native-gesture-handler";
 const Home = () => {
   const navigation = useNavigation();
 
-  // const handleLogout = async () => {
-  //   await AsyncStorage.removeItem("accessJWTToken");
-  //   navigation.navigate("Welcome");
-  // };
-
   return (
     <SafeAreaView className="flex-1 bg-background">
       <View className="flex-1 flex items-center justify-center w-full p-screen">
