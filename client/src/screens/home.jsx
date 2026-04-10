@@ -43,7 +43,7 @@ const Home = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="flex-1 items-center justify-center w-full">
+      <View className="flex-1 flex items-center justify-center w-full p-screen">
         <ScrollView showsVerticalScrollIndicator={false} vertical={true}>
           <View className="flex-1 items-center justify-center gap-large bg-background">
             <Topbar />
@@ -51,13 +51,6 @@ const Home = () => {
               <FeaturedJobs />
               <QuickActions />
             </View>
-            {/* {scrollBar.map((item) => (
-            <View key={item.index}>
-              <TouchableOpacity>
-                <Text>{item.btnName}</Text>
-              </TouchableOpacity>
-            </View>
-          ))} */}
           </View>
         </ScrollView>
       </View>

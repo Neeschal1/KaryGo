@@ -4,9 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import {
   SubTitleText,
   TitleText,
-  PrimaryButton,
   Title,
-  SecondaryButton,
   ApplyButton,
 } from "@/src/components/systemComponentLayout";
 
@@ -95,7 +93,7 @@ const JobsLists = [
 
 const FeaturedJobs = () => {
   return (
-    <View className="flex w-full gap-large">
+    <View className="flex w-full gap-large mt-20">
       <Title text="Featured Jobs" />
       <View>
         {JobsLists.map((listItem) => (
@@ -117,7 +115,7 @@ const FeaturedJobs = () => {
                     <SubTitleText text={listItem.CompanyName} />
                   </View>
                 </View>
-                <View className="flex flex-row">
+                <View className="flex flex-row gap-small">
                   <View className="flex bg-[#E7EFF9] p-2 rounded-full px-5">
                     <TitleText text={listItem.Stipend} />
                   </View>
