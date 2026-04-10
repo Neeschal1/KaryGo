@@ -43,10 +43,9 @@ const HandleSignup = async ({
         const refreshJWT = res?.data?.Message?.Tokens?.refreshtoken;
         await AsyncStorage.setItem("accessJWTToken", accessJWT);
         await AsyncStorage.setItem("refreshJWTToken", refreshJWT);
-        navigation.navigate("TabNavigation")
-      } else {
-        navigation.navigate("Login")
-      }
+        // navigation.navigate("Otp")
+      } 
+      navigation.navigate("Otp")
 
     
     } catch (err) {

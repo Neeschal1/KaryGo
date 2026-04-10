@@ -10,6 +10,8 @@ import Community from './community'
 import Chats from './chats'
 import ChooseRole from './chooseRole'
 import Otp from './otp'
+import RecruiterProfile from './recruiterProfile'
+import SeekerProfile from './seekerProfile'
 
 export {
   SplashScreen,
@@ -23,5 +25,7 @@ export {
   AddJobs,
   Community,
   ChooseRole,
+  RecruiterProfile,
+  SeekerProfile,
   Chats,
 };

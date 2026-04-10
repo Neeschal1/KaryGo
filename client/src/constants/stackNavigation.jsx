@@ -9,6 +9,8 @@ import {
   Signup,
   Otp,
   ChooseRole,
+  RecruiterProfile,
+  SeekerProfile,
 } from "../screens/Layout";
 
 import TabNavigation from './tabNavigation'
@@ -46,6 +48,18 @@ const StackNavigation = () => {
           headerTintColor: "#000000",
         }}/>
       <Stack.Screen name="ChooseRole" component={ChooseRole} options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: " ",
+          headerTintColor: "#000000",
+        }}/>
+      <Stack.Screen name="RecruiterProfile" component={RecruiterProfile} options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: " ",
+          headerTintColor: "#000000",
+        }}/>
+      <Stack.Screen name="SeekerProfile" component={SeekerProfile} options={{
           headerShown: true,
           headerTransparent: true,
           headerTitle: " ",
