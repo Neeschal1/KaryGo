@@ -8,6 +8,7 @@ import AddJobs from './addJobs'
 import Resume from './resume'
 import Community from './community'
 import Chats from './chats'
+import ChooseRole from './chooseRole'
 import Otp from './otp'
 
 export {
@@ -21,5 +22,6 @@ export {
   Resume,
   AddJobs,
   Community,
+  ChooseRole,
   Chats,
 };

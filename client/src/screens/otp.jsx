@@ -104,7 +104,7 @@ const Otp = () => {
           //   setLoading,
           //   setError,
           //   setErrorMessage,
-            navigatingScreen="TabNavigation"
+            navigatingScreen="ChooseRole"
           // }}
         />
         <View>

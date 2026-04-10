@@ -8,6 +8,7 @@ import {
   Profile,
   Signup,
   Otp,
+  ChooseRole,
 } from "../screens/Layout";
 
 import TabNavigation from './tabNavigation'
@@ -39,6 +40,12 @@ const StackNavigation = () => {
           headerTintColor: "#000000",
         }}/>
       <Stack.Screen name="Otp" component={Otp} options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: " ",
+          headerTintColor: "#000000",
+        }}/>
+      <Stack.Screen name="ChooseRole" component={ChooseRole} options={{
           headerShown: true,
           headerTransparent: true,
           headerTitle: " ",
