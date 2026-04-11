@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .serializers import *
 from ..models.entities import Recruiter
 from django.shortcuts import get_object_or_404
@@ -13,7 +12,6 @@ class JobSerializersView(viewsets.ViewSet):
         number_of_jobs = Job.objects.all().count()
         serializer = JobSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
-        print("\n\n\n", request.data["recruiter"])
         recruiter_detail = Recruiter.objects.get(id=request.data["recruiter"])
         if serializer:
             job = Job.objects.create(
@@ -32,7 +30,7 @@ class JobSerializersView(viewsets.ViewSet):
                         "Job title": job.title,
                         "Posted by": recruiter_detail.Full_Name,
                     },
-                    "Total Number of jobs": number_of_jobs+1
+                    "Total Number of jobs": number_of_jobs + 1,
                 },
                 status=status.HTTP_201_CREATED,
             )
@@ -40,8 +38,8 @@ class JobSerializersView(viewsets.ViewSet):
             {"Message": "Something went wrong! Job didn't created."},
             status=status.HTTP_408_REQUEST_TIMEOUT,
         )
-        
-    
+
+
     # Updating the existing job
     def update(self, request: any, pk: int) -> response.Response:
         existing_job = get_object_or_404(Job, pk=pk)
@@ -49,5 +47,27 @@ class JobSerializersView(viewsets.ViewSet):
         serializer.is_valid(raise_exception=True)
         if serializer:
             serializer.save()
-            return response.Response({"Message": f"Job details updated successfully :)", "Detail": serializer.data})
+            return response.Response(
+                {
+                    "Message": f"Job details updated successfully :)",
+                    "Detail": serializer.data,
+                }, status=status.HTTP_200_OK
+            )
         return
+
+
+    # Retrieving a particular job detail
+    def retrieve(self, request: any, pk: int) -> response.Response:
+        retrieving_job_detail = get_object_or_404(Job, pk=pk)
+        serializers = JobSerializers(retrieving_job_detail)
+        if serializers:
+            return response.Response(
+                {"Message": "Jobs fetched :)", "Details": serializers.data}, status=status.HTTP_200_OK
+            )
+        
+            
+    # Delete a job object
+    def delete(self, request: any, pk: int) -> response.Response:
+        job_to_be_deleted = get_object_or_404(Job, pk=pk)
+        job_to_be_deleted.delete()
+        return response.Response({"Message":"Job deleted successfully :)"}, status=status.HTTP_200_OK)
