@@ -13,7 +13,7 @@ import {
   SeekerProfile,
 } from "../screens/Layout";
 
-import TabNavigation from './tabNavigation'
+import TabNavigation from "./tabNavigation";
 
 const Stack = createStackNavigator();
 
@@ -21,13 +21,30 @@ const StackNavigation = () => {
   return (
     <Stack.Navigator
       initialRouteName="Splash"
-      screenOptions={{ headerShown: false, animation: "fade_from_right" }}
-    >
+      screenOptions={{ headerShown: false, animation: "fade_from_right" }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="Otp" component={Otp} />
+      <Stack.Screen name="ChooseRole" component={ChooseRole} />
+      <Stack.Screen name="RecruiterProfile" component={RecruiterProfile} />
+      <Stack.Screen name="SeekerProfile" component={SeekerProfile} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Resume" component={Resume} />
       <Stack.Screen
-        name="Login"
-        component={Login}
+        name="TabNavigation"
+        component={TabNavigation}
+        options={{
+          headerShown: false,
+          headerTransparent: true,
+          headerTitle: " ",
+          headerTintColor: "#000000",
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
         options={{
           headerShown: true,
           headerTransparent: true,
@@ -35,45 +52,6 @@ const StackNavigation = () => {
           headerTintColor: "#FFFFFF",
         }}
       />
-      <Stack.Screen name="Signup" component={Signup} options={{
-          headerShown: true,
-          headerTransparent: true,
-          headerTitle: " ",
-          headerTintColor: "#000000",
-        }}/>
-      <Stack.Screen name="Otp" component={Otp} options={{
-          headerShown: true,
-          headerTransparent: true,
-          headerTitle: " ",
-          headerTintColor: "#000000",
-        }}/>
-      <Stack.Screen name="ChooseRole" component={ChooseRole} options={{
-          headerShown: true,
-          headerTransparent: true,
-          headerTitle: " ",
-          headerTintColor: "#000000",
-        }}/>
-      <Stack.Screen name="RecruiterProfile" component={RecruiterProfile} options={{
-          headerShown: true,
-          headerTransparent: true,
-          headerTitle: " ",
-          headerTintColor: "#000000",
-        }}/>
-      <Stack.Screen name="SeekerProfile" component={SeekerProfile} options={{
-          headerShown: true,
-          headerTransparent: true,
-          headerTitle: " ",
-          headerTintColor: "#000000",
-        }}/>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Resume" component={Resume} />
-      <Stack.Screen name="TabNavigation" component={TabNavigation} options={{
-          headerShown: false,
-          headerTransparent: true,
-          headerTitle: " ",
-          headerTintColor: "#000000",
-        }}/>
-        <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 };

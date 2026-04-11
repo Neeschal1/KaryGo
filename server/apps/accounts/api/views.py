@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from .serializers import *
 from rest_framework import viewsets
 from ..services.auth import UserAuth
-from rest_framework import generics
+from rest_framework import generics, response
 from ..services.recruiterProfile import RecruiterProfile
 from ..services.seekerProfile import SeekerProfile
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
@@ -90,7 +90,17 @@ class AccountModification(viewsets.ViewSet):
         return UserAuth()._logoutaccount(request)
 
 
-
+# {
+# "ID":72,
+#   "Image": "https://randomuser.me/api/portraits/men/32.jpg",
+#   "Full_Name": "John Doe",
+#   "Website_or_Portfolio": "https://johndoe.dev",
+#   "Location": "Kathmandu, Nepal",
+#   "Phone": "+977-9812345678",
+#   "Company_Name": "TechNova Pvt. Ltd.",
+#   "Position": "Senior Recruiter",
+#   "Industry": "Information Technology"
+# }
 
 # Recruiter's profile
 class RecruiterProfileView(viewsets.ViewSet):
@@ -100,8 +110,9 @@ class RecruiterProfileView(viewsets.ViewSet):
     def create(self, request):
         serializer = RecruiterSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
+        userid = User.objects.get(id=request.data['ID'])
         if serializer:
-            return RecruiterProfile()._recruiterscreateprofile(serializer, request.user)
+            return RecruiterProfile()._recruiterscreateprofile(serializer, userid)
         
     def retrieve(self, request, pk=None):
         return RecruiterProfile()._recruiterprofileretrieve(pk, request)

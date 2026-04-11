@@ -65,7 +65,7 @@ class UserAuth:
         if not user:
             return Response({"Message":"User's account not created. Please try again later :("})
             
-        return Response({"Message":{"Account Detail": f"Account created successfully for {user.first_name}", "Tokens": {"accesstoken":access_token, "refreshtoken": refresh_token}}, "Total number of users": number_of_users}, status = status.HTTP_201_CREATED)
+        return Response({"Message":{"Account Detail": f"Account created successfully for {user.first_name}", "UserID": user.id, "Tokens": {"accesstoken":access_token, "refreshtoken": refresh_token}}, "Total number of users": number_of_users}, status = status.HTTP_201_CREATED)
     
     
     

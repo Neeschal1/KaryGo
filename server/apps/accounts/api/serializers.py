@@ -50,8 +50,8 @@ class RecruiterSerializers(serializers.ModelSerializer):
             "Industry",
         ]
         extra_kwargs = {
-            "ID": {"read_only": True },
-            "Image": {"required": False},
+            "ID": {"required": True },
+            "Image": {"required": True},
             "Full_Name": {"required": True},
             "Website_or_Portfolio": {"required": True},
             "Location": {"required": True},

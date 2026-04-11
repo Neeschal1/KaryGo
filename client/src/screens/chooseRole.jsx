@@ -23,10 +23,10 @@ const ChooseRole = () => {
           <Title text="Choose your Role" />
           <View className="flex-row w-full justify-between gap-small">
             <View className="flex w-1/2">
-              <PrimaryButton navigatingScreen="RecruiterProfile" text="Recruiter" />
+              <PrimaryButton navigatingScreen="SeekerProfile" text="Seeker" />
             </View>
             <View className="flex w-1/2">
-              <PrimaryButton navigatingScreen="SeekerProfile" text="Seeker" />
+              <PrimaryButton navigatingScreen="RecruiterProfile" text="Recruiter" />
             </View>
           </View>
         </View>

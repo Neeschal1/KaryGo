@@ -2,6 +2,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
+import Seeker from "@/src/api/userRoles/seeker"
 import {
   AuthPasswordCustomInput,
   AuthTextCustomInput,
@@ -30,7 +31,7 @@ const SeekerProfile = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <ScrollView showsVerticalScrollIndicator={false}>
+      {/* <ScrollView showsVerticalScrollIndicator={false}>
         <View className="flex flex-1 bg-background items-center justify-center p-screen gap-large">
           <View className="items-center">
             <Image source={logo} />
@@ -125,20 +126,24 @@ const SeekerProfile = () => {
         <PrimaryButton
           text="Set up a new Profile"
           navigatingScreen="TabNavigation"
-        //   parameters={{
-        //     profileName,
-        //     web,
-        //     location,
-        //     phone,
-        //     companyName,
-        //     position,
-        //     industry,
-        //     setLoading,
-        //     setError,
-        //     setErrorMessage,
-        //     navigation,
-        //   }}
+          Press={Seeker}
+          parameters={{
+            profileName,
+            web,
+            location,
+            phone,
+            companyName,
+            position,
+            industry,
+            setLoading,
+            setError,
+            setErrorMessage,
+            navigation,
+          }}
         />
+      </View> */}
+      <View>
+        <Text>Heyyyyyyyyyyyy</Text>
       </View>
     </SafeAreaView>
   );
