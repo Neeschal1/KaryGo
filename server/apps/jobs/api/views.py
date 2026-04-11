@@ -1,9 +1,31 @@
 from .serializers import *
 from ..models.entities import Recruiter
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, permissions, response, status
+from rest_framework import viewsets, permissions, response, status, generics
 
 
+""" Fully admin control views """
+    
+# Listing and creating jobs
+class JobSerializerAdminListCreateView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAdminUser]
+    queryset = Job.objects.all()
+    serializer_class = JobSerializers
+    
+# Retrieve and Updating any job 
+class JobSerializerAdminRetrieveUpdateView(generics.RetrieveUpdateAPIView):
+    permission_classes = [permissions.IsAdminUser]
+    queryset = Job.objects.all()
+    serializer_class = JobSerializers
+    
+# Destroying any job 
+class JobSerializerAdminDestroyView(generics.DestroyAPIView):
+    permission_classes = [permissions.IsAdminUser]
+    queryset = Job.objects.all()
+    serializer_class = JobSerializers
+
+
+""" Job related Views """
 class JobSerializersView(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
 
