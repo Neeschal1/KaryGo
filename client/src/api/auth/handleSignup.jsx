@@ -1,6 +1,5 @@
 import axios from "axios";
 import url from "../../utils/api_url";
-import JWTAuthorization from "../../utils/authorization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HandleSignup = async ({
@@ -38,18 +37,11 @@ const HandleSignup = async ({
       const returnMessage = res?.data?.Message
       console.log("Return Message: ", returnMessage)
 
-      const userID = res?.data?.Message?.UserID
-      console.log("\n\n\nUser's ID in integer: ", userID)
-      const userIDstr = res?.data?.Message?.UserID
-      console.log("\n\n\nUser's ID in string: ", String(userIDstr))
-      await AsyncStorage.setItem("UsersID", String(userID))
-
       if (checked === true) {
         const accessJWT = res?.data?.Message?.Tokens?.accesstoken;
         const refreshJWT = res?.data?.Message?.Tokens?.refreshtoken;
         await AsyncStorage.setItem("accessJWTToken", accessJWT);
         await AsyncStorage.setItem("refreshJWTToken", refreshJWT);
-        // navigation.navigate("Otp")
       } 
       navigation.navigate("Otp")
 

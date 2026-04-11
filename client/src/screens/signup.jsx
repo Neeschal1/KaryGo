@@ -6,13 +6,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import HandleSignup from "@/src/api/auth/handleSignup";
 import {
   PrimaryButton,
-  SecondaryButton,
   TextualButtonPrimary,
-  BorderButton,
   AuthTextCustomInput,
   AuthPasswordCustomInput,
   DescriptiveText,
-  TitleText,
   SubTitleText,
   ErrorText,
 } from "@/src/components/systemComponentLayout";

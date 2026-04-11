@@ -5,20 +5,16 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
-  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import HandleLogin from "@/src/api/auth/handleLogin";
 import {
   PrimaryButton,
-  SecondaryButton,
   TextualButtonPrimary,
-  BorderButton,
   AuthTextCustomInput,
   AuthPasswordCustomInput,
   DescriptiveText,
-  TitleText,
   SubTitleText,
 } from "@/src/components/systemComponentLayout";
 import { useNavigation } from "@react-navigation/native";

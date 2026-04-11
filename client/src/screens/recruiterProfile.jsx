@@ -4,7 +4,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import Recruiter from "@/src/api/userRoles/recruiter"
 import {
-  AuthPasswordCustomInput,
   AuthTextCustomInput,
   DescriptiveText,
   PrimaryButton,
@@ -26,8 +25,6 @@ const RecruiterProfile = () => {
   const [industry, setIndustry] = useState("");
 
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(false)
 
   return (
     <SafeAreaView className="flex-1 bg-background">
@@ -136,8 +133,6 @@ const RecruiterProfile = () => {
             position,
             industry,
             setLoading,
-            setError,
-            setErrorMessage,
             navigation,
           }}
         />

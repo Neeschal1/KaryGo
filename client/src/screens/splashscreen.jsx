@@ -11,8 +11,11 @@ const SplashScreen = () => {
   useEffect(() => {
     setTimeout(async () => {
       const accessTokenJWT = await AsyncStorage.getItem("accessJWTToken");
+      const profile = await AsyncStorage.getItem("ProfileCompleted")
       if (accessTokenJWT) {
         navigation.navigate("TabNavigation");
+      } else if (accessTokenJWT && profile) {
+        navigation.navigate("ChooseRole");
       } else {
         navigation.navigate("Welcome");
       }
