@@ -45,7 +45,7 @@ class UserAuth:
             email = email,
             username = username,
             password = make_password(password),
-            is_active = False
+            is_active = True
         )
         
         refresh = RefreshToken.for_user(user)
