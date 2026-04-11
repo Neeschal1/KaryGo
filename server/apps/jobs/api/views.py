@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .serializers import *
 from ..models.entities import Recruiter
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions, response, status
 
 
@@ -8,7 +9,7 @@ class JobSerializersView(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
 
     # creating a new job role
-    def create(self, request):
+    def create(self, request: any) -> response.Response:
         number_of_jobs = Job.objects.all().count()
         serializer = JobSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -39,3 +40,14 @@ class JobSerializersView(viewsets.ViewSet):
             {"Message": "Something went wrong! Job didn't created."},
             status=status.HTTP_408_REQUEST_TIMEOUT,
         )
+        
+    
+    # Updating the existing job
+    def update(self, request: any, pk: int) -> response.Response:
+        existing_job = get_object_or_404(Job, pk=pk)
+        serializer = JobSerializers(existing_job, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        if serializer:
+            serializer.save()
+            return response.Response({"Message": f"Job details updated successfully :)", "Detail": serializer.data})
+        return
