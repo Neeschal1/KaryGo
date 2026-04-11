@@ -1,3 +1,41 @@
 from django.shortcuts import render
+from .serializers import *
+from ..models.entities import Recruiter
+from rest_framework import viewsets, permissions, response, status
 
-# Create your views here.
+
+class JobSerializersView(viewsets.ViewSet):
+    permission_classes = [permissions.AllowAny]
+
+    # creating a new job role
+    def create(self, request):
+        number_of_jobs = Job.objects.all().count()
+        serializer = JobSerializers(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        print("\n\n\n", request.data["recruiter"])
+        recruiter_detail = Recruiter.objects.get(id=request.data["recruiter"])
+        if serializer:
+            job = Job.objects.create(
+                recruiter=recruiter_detail,
+                title=serializer.validated_data["title"],
+                description=serializer.validated_data["description"],
+                salary=serializer.validated_data["salary"],
+                job_type=serializer.validated_data["job_type"],
+                experience_level=serializer.validated_data["experience_level"],
+                deadline=serializer.validated_data["deadline"],
+            )
+            return response.Response(
+                {
+                    "Message": "New job successfully added :)",
+                    "Job Detail": {
+                        "Job title": job.title,
+                        "Posted by": recruiter_detail.Full_Name,
+                    },
+                    "Total Number of jobs": number_of_jobs+1
+                },
+                status=status.HTTP_201_CREATED,
+            )
+        return response.Response(
+            {"Message": "Something went wrong! Job didn't created."},
+            status=status.HTTP_408_REQUEST_TIMEOUT,
+        )
