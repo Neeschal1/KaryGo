@@ -13,7 +13,7 @@ from drf_yasg.utils import swagger_auto_schema
 
 # All users profile
 class AdminAccessAccountDetails(generics.ListAPIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserAccountSignupSerializers
     

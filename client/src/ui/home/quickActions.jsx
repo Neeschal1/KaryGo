@@ -51,7 +51,6 @@ const QuickActions = () => {
           </TouchableOpacity>
         ))}
       </View>
-      <View className="h-52"></View>
     </View>
   );
 };

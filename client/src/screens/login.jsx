@@ -18,6 +18,7 @@ import {
   SubTitleText,
 } from "@/src/components/systemComponentLayout";
 import { useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const LoginBG = require("@/src/assets/images/loginBG.png");
 const logo = require("@/src/assets/images/mainlogo.png");
@@ -41,7 +42,8 @@ const Login = () => {
   }, [error]);
 
   return (
-    <View className="flex flex-1 bg-background items-center justify-start">
+    <ScrollView vertical={true} showsVerticalScrollIndicator={false}>
+      <View className="flex flex-1 bg-background items-center justify-start">
       <ImageBackground
         style={{ height: 223, width: 394 }}
         className="flex items-center justify-center px-5"
@@ -123,7 +125,11 @@ const Login = () => {
           </View>
         </View>
       </View>
+      <View className="flex-1 h-10">
+
+      </View>
     </View>
+    </ScrollView>
   );
 };
 

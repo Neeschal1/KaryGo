@@ -109,7 +109,7 @@ const Otp = () => {
         />
         <View>
           <DescriptiveText text="Didn't receive an OTP?" />
-          <TextualButtonPrimary text="Resend OTP again" />
+          <TextualButtonPrimary navigatingScreen="TabNavigation" text="Resend OTP again" />
         </View>
       </View>
     </SafeAreaView>

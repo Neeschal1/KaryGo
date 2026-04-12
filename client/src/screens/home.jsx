@@ -22,7 +22,7 @@ const Home = () => {
 
     const subscription = BackHandler.addEventListener(
       "hardwareBackPress",
-      backAction
+      backAction,
     );
 
     return () => subscription.remove();
@@ -38,17 +38,11 @@ const Home = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="flex-1 items-center justify-center w-full p-screen">
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View className="flex-1 items-center justify-center gap-large bg-background">
-            <Topbar />
-            <View className="w-full flex flex-1">
-              <FeaturedJobs />
-              <QuickActions />
-            </View>
-          </View>
-        </ScrollView>
+      <View className="flex-1 w-full p-screen">
+        <Topbar />
+        <FeaturedJobs />
       </View>
+        <View className="flex h-4"></View>
 
       <Modal
         transparent

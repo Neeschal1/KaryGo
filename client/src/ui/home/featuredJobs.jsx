@@ -1,5 +1,6 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
+import { FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {
   SubTitleText,
@@ -92,43 +93,54 @@ const JobsLists = [
 ];
 
 const FeaturedJobs = () => {
-  return (
-    <View className="flex w-full gap-large mt-20">
-      <Title text="Featured Jobs" />
-      <View>
-        {JobsLists.map((listItem) => (
-          <View
-            key={listItem.index}
-            className="flex mb-4 items-center w-full justify-center"
-          >
-            <View className="flex p-5 gap-5 bg-white w-full rounded-2xl items-start justify-center">
-              <View className="flex gap-small">
-                <View className="flex flex-row items-center gap-mid">
-                  <Ionicons
-                    className="p-4 flex bg-[#F0F5FC] rounded-2xl"
-                    name={listItem.IconName}
-                    size={26}
-                    color={"blue"}
-                  />
-                  <View>
-                    <Title text={listItem.JobName} />
-                    <SubTitleText text={listItem.CompanyName} />
-                  </View>
-                </View>
-                <View className="flex flex-row gap-small">
-                  <View className="flex bg-[#E7EFF9] p-2 rounded-full px-5">
-                    <TitleText text={listItem.Stipend} />
-                  </View>
-                  <View className="flex bg-[#FEF6E6] p-2 rounded-full px-5">
-                    <TitleText text={listItem.Field} />
-                  </View>
-                </View>
-              </View>
-              <ApplyButton text="Apply Now!" />
+  const renderItem = ({ item }) => (
+    <View className="flex mb-4 items-center w-full justify-center">
+      <View className="flex p-5 gap-5 bg-white w-full rounded-2xl items-start justify-center">
+        <View className="flex gap-small">
+          <View className="flex flex-row items-center gap-mid">
+            <Ionicons
+              className="p-4 flex bg-[#F0F5FC] rounded-2xl"
+              name={item.IconName}
+              size={26}
+              color={"blue"}
+            />
+            <View>
+              <Title text={item.JobName} />
+              <SubTitleText text={item.CompanyName} />
             </View>
           </View>
-        ))}
+
+          <View className="flex flex-row gap-small">
+            <View className="flex bg-[#E7EFF9] p-2 rounded-full px-5">
+              <TitleText text={item.Stipend} />
+            </View>
+            <View className="flex bg-[#FEF6E6] p-2 rounded-full px-5">
+              <TitleText text={item.Field} />
+            </View>
+          </View>
+        </View>
+
+        <ApplyButton text="Apply Now!" />
       </View>
+    </View>
+  );
+
+  return (
+    <View className="flex-1">
+      <FlatList
+      data={JobsLists}
+      keyExtractor={(item) => item.index.toString()}
+      renderItem={renderItem}
+      showsVerticalScrollIndicator={false}
+      ListHeaderComponent={
+        <View className="mb-2">
+          <Title text="Featured Jobs" />
+        </View>
+      }
+    />
+    <View className="flex h-10 items-center justify-center">
+      <TitleText text="You've come to the end :)" />
+    </View>
     </View>
   );
 };
