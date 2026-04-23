@@ -4,7 +4,8 @@ import {
   TextualButtonPrimary,
   TextualButtonSecondary,
   BorderButton,
-  ApplyButton
+  ApplyButton,
+  ResumeButton
 } from "./buttons";
 import { AuthTextCustomInput, AuthPasswordCustomInput } from "./textInput";
 import { DescriptiveText, TitleText, SubTitleText, ErrorText, Title } from "./texts";
@@ -17,6 +18,7 @@ export {
   BorderButton,
   Title,
   ApplyButton,
+  ResumeButton,
   AuthTextCustomInput,
   AuthPasswordCustomInput,
   DescriptiveText,

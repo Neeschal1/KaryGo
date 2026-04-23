@@ -118,3 +118,22 @@ export const ApplyButton = ({text}) => {
     </TouchableOpacity>
   )
 }
+
+export const ResumeButton = ({title, docpick, pickDocuments, handleButtonPress}) => {
+  const navigation = useNavigation();
+
+  // const handleButtonPress = () => {
+  //   console.log("Your Document: ", pickDocuments)
+  // };
+
+  return (
+    <TouchableOpacity className={`${docpick ? "bg-primaryloading" : "bg-primary"} rounded-button w-full items-center`}
+      onPress={handleButtonPress}
+      // disabled={docpick}
+      >
+      <Text className="font-Quicksandbold text-white text-subheading py-3 px-3">
+        {title}
+      </Text>
+    </TouchableOpacity>
+  )
+}
