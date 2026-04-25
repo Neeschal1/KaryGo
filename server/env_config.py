@@ -20,3 +20,11 @@ class Config:
     EMAIL_PORT = os.getenv('EMAIL_PORT')
     EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
     EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
+    
+    GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+    GROQ_MODEL_NAME = os.getenv('GROQ_MODEL_NAME')
+    GROQ_MODEL_PROVIDER = os.getenv('GROQ_MODEL_PROVIDER')
+    
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+    GOOGLE_MODEL_NAME = os.getenv('GOOGLE_MODEL_NAME')
+    GOOGLE_MODEL_PROVIDER = os.getenv('GOOGLE_MODEL_PROVIDER')

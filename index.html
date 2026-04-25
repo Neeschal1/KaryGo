@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Career Mentor</title>
+
+<style>
+    body {
+        font-family: Arial;
+        padding: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 400px;
+    }
+
+    input {
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    #output {
+        margin-top: 20px;
+        white-space: pre-wrap;
+        background: #111;
+        color: rgb(255, 255, 255);
+        padding: 15px;
+        border-radius: 8px;
+        min-height: 200px;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>AI Career Mentor</h2>
+
+<form onsubmit="generateairesponse(event)">
+    <input id="course" placeholder="Course" />
+    <input id="aim" placeholder="Aim" />
+    <input id="youknow" placeholder="Skills" />
+    <input id="problems" placeholder="Problems" />
+    <input id="additional" placeholder="Additional" />
+    <button type="submit">Generate</button>
+</form>
+
+<div id="output">Waiting...</div>
+
+<script>
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+const typeText = async (text, output) => {
+    output.innerText = "";
+    let words = text.split(" ");
+    let current = "";
+
+    for (let word of words) {
+        current += word + " ";
+        output.innerText = current;
+        await sleep(20); 
+    }
+};
+
+const generateairesponse = async (event) => {
+    event.preventDefault();
+
+    const output = document.getElementById("output");
+
+    const payload = {
+        Course_enrolled_with: document.getElementById("course").value,
+        Aim_to_become: document.getElementById("aim").value,
+        Things_you_know_till_now: document.getElementById("youknow").value,
+        Problem_facing: document.getElementById("problems").value,
+        Additional_description: document.getElementById("additional").value
+    };
+    output.innerText = "📖 Reading your details...";
+    await sleep(5000);
+
+    output.innerText = "🧠 Understanding your profile...";
+    await sleep(7000);
+
+    output.innerText = "⚙️ Generating roadmap...";
+    await sleep(800);
+
+    output.innerText = "📖 Wrapping up everything...";
+    await sleep(800);
+
+    try {
+        const res = await fetch("http://127.0.0.1:8000/accounts/ai-response/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        let aiText = "";
+
+        if (Array.isArray(data["Response from AI"])) {
+            aiText = data["Response from AI"].join(" ");
+        } else {
+            aiText = JSON.stringify(data);
+        }
+
+        await typeText(aiText, output);
+
+    } catch (err) {
+        output.innerText = "Error: " + err.message;
+    }
+};
+</script>
+
+</body>
+</html>

@@ -17,6 +17,7 @@ class UserAccountSignupSerializers(serializers.ModelSerializer):
             "is_active" : {"read_only": True}
         }
         
+        
 # OTP verification serializer
 # class OTPVerificationSerializer(serializers.ModelSerializer):
 #     class Meta:
@@ -80,3 +81,11 @@ class SeekerSerializers(serializers.ModelSerializer):
             "Education": {"required": True},
         }
 
+
+# User's Goal
+class UserDreamCareerSerializers(serializers.Serializer):
+    Course_enrolled_with = serializers.CharField()
+    Aim_to_become = serializers.CharField()
+    Things_you_know_till_now = serializers.CharField()
+    Problem_facing = serializers.CharField()
+    Additional_description = serializers.CharField()

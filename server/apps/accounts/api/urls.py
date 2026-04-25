@@ -15,6 +15,9 @@ router.register('account_modification', AccountModification, basename="modificat
 router.register('recruiter_profile', RecruiterProfileView, basename="recruiterprofile")
 router.register('seeker_profile', SeekersProfileView, basename="seekerprofile")
 
+# ai response
+router.register('ai-response', UserDreamCareerSerializersView, basename='responsefromai')
+
 urlpatterns = [
     path("list_all_users_account/", AdminAccessAccountDetails.as_view(), name='AdminAccessAccountDetails'),
     path("list_all_recruiters_profile/", AdminAccessRecruiterProfilesDetails.as_view(), name='AdminAccessRecruiterProfilesDetails'),

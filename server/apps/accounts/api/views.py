@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from .serializers import *
-from rest_framework import viewsets
+from django.http import StreamingHttpResponse
+from ai.services.goals import Goal
+from rest_framework import viewsets, status
 from ..services.auth import UserAuth
 from rest_framework import generics, response
 from ..services.recruiterProfile import RecruiterProfile
@@ -90,18 +92,6 @@ class AccountModification(viewsets.ViewSet):
         return UserAuth()._logoutaccount(request)
 
 
-# {
-# "ID":72,
-#   "Image": "https://randomuser.me/api/portraits/men/32.jpg",
-#   "Full_Name": "John Doe",
-#   "Website_or_Portfolio": "https://johndoe.dev",
-#   "Location": "Kathmandu, Nepal",
-#   "Phone": "+977-9812345678",
-#   "Company_Name": "TechNova Pvt. Ltd.",
-#   "Position": "Senior Recruiter",
-#   "Industry": "Information Technology"
-# }
-
 # Recruiter's profile
 class RecruiterProfileView(viewsets.ViewSet):
     permission_classes = [AllowAny]
@@ -145,3 +135,20 @@ class SeekersProfileView(viewsets.ViewSet):
     
     def delete(self, request, pk=None):
         return SeekerProfile()._seekerprofiledelete(request, pk)
+    
+    
+    
+# User's goal views
+class UserDreamCareerSerializersView(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+    def create(self, request):
+        serializer = UserDreamCareerSerializers(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            course = serializer.validated_data['Course_enrolled_with']
+            aim = serializer.validated_data['Aim_to_become']
+            knewtillnow = serializer.validated_data['Things_you_know_till_now']
+            problem = serializer.validated_data['Problem_facing']
+            description = serializer.validated_data['Additional_description']
+            ai_response = Goal()._careertrack(course, aim, knewtillnow, problem, description)
+            # return StreamingHttpResponse(ai_response, content_type="text/plain")
+            return response.Response({"Response from AI": ai_response}, status=status.HTTP_200_OK)
