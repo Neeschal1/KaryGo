@@ -3,7 +3,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import * as DocumentPicker from "expo-document-picker";
 
-
 const Resume = () => {
   const [cv, setCV] = useState(null);
   const [uploadedUrl, setUploadedUrl] = useState(null);
