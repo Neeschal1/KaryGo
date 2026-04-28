@@ -1,5 +1,6 @@
 from .serializers import *
 from ..models.entities import Recruiter
+from ..services.fetchJobs import *
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions, response, status, generics
 
@@ -98,5 +99,7 @@ class JobSerializersView(viewsets.ViewSet):
     # Listing all the jobs available
     def list(self, request):
         queryset = Job.objects.all()
-        serializer = JobSerializers(queryset, many=True)
-        return response.Response({"Message": "All jobs fetched successfully :)", "Data": serializer.data})
+        serializer = JobSerializers(queryset, many=True).data
+        description = [jobs["description"] for jobs in serializer]
+        matched_jobs = JobFetch()._fetch(description)
+        return response.Response({"Message": "All jobs fetched successfully :)", "Data": serializer})
