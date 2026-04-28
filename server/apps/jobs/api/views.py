@@ -93,3 +93,10 @@ class JobSerializersView(viewsets.ViewSet):
         job_to_be_deleted = get_object_or_404(Job, pk=pk)
         job_to_be_deleted.delete()
         return response.Response({"Message":"Job deleted successfully :)"}, status=status.HTTP_200_OK)
+    
+    
+    # Listing all the jobs available
+    def list(self, request):
+        queryset = Job.objects.all()
+        serializer = JobSerializers(queryset, many=True)
+        return response.Response({"Message": "All jobs fetched successfully :)", "Data": serializer.data})
