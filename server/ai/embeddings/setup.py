@@ -1,7 +1,7 @@
 from langchain_community.document_loaders import PyPDFLoader
-from ..llms.llms import Llms
+# from ..llms.llms import Llms
 from ..prompts.fetchresumedescription import resumedescriptionprompt
-import re
+# import re
 from langchain_huggingface import HuggingFaceEmbeddings #type:ignore
 
 # embedding = HuggingFaceEmbeddings(model_name = "sentence-transformers/all-MiniLM-L6-v2")
@@ -60,5 +60,8 @@ The art of Asking AI:
 Session on how can AI be effiectively used for building a production ready AI-integrated applications.
 """
 
-description = resumedescriptionprompt(our_pdf)
+def pdfdetails(pdf):
+    return resumedescriptionprompt(pdf)
+
+description = pdfdetails(our_pdf)
 print(description)

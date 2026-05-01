@@ -11,8 +11,8 @@ class Llms:
     def _resumedescription(self, resumecontent: str):
         model = ChatGoogleGenerativeAI(
             model=google_model_name, 
-            google_api_key="************************"
-        )
+            google_api_key="AIzaSyCngD8zh9mmbYmuTiiPvSrLaeOcaudGKIg"
+        )        
         return model.invoke(resumecontent).content
 
     def _googlellm_stream(self, response: str):
