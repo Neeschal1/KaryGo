@@ -5,11 +5,20 @@ import os
 googleapikey = Config.GOOGLE_API_KEY
 google_model_name = Config.GOOGLE_MODEL_NAME
 
+
 class Llms:
+
+    def _resumedescription(self, resumecontent: str):
+        model = ChatGoogleGenerativeAI(
+            model=google_model_name, 
+            google_api_key="************************"
+        )
+        return model.invoke(resumecontent).content
+
     def _googlellm_stream(self, response: str):
         try:
             model = ChatGoogleGenerativeAI(
-                model=google_model_name,
+                model=google_model_name, 
                 google_api_key="***********************"
             )
             for chunk in model.stream(response):

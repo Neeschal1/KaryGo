@@ -1,4 +1,6 @@
 from langchain_community.document_loaders import PyPDFLoader
+from ..llms.llms import Llms
+from ..prompts.fetchresumedescription import resumedescriptionprompt
 import re
 from langchain_huggingface import HuggingFaceEmbeddings #type:ignore
 
@@ -6,8 +8,7 @@ from langchain_huggingface import HuggingFaceEmbeddings #type:ignore
 
 our_pdf: str = """
 PROFESSIONAL SUMMARY
-Generative AI Developer with expertise in full-stack web/mobile applications utilizing Django REST APIs and modern frontend technologies, backed by
-a strong foundation in Python and JavaScript.
+Generative AI Developer with expertise in full-stack web/mobile applications utilizing Django REST APIs and modern frontend technologies backed by a strong foundation in Python and JavaScript.
 TECHNICAL SKILLS
 Languages:Python, Javascript, C
 Backend: Django Rest Framework(DRF), FastAPI
@@ -59,5 +60,5 @@ The art of Asking AI:
 Session on how can AI be effiectively used for building a production ready AI-integrated applications.
 """
 
-data = [s.strip() for s in re.split(r"[\n.:?,]", our_pdf) if s.strip()]
-print(data)
+description = resumedescriptionprompt(our_pdf)
+print(description)
