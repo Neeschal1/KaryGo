@@ -1,6 +1,6 @@
 from .serializers import *
 from ..models.entities import Recruiter
-from ..services.fetchJobs import *
+from ai.embeddings.fetchjobs import *
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions, response, status, generics
 from .pagination import *
@@ -106,6 +106,6 @@ class JobSerializersView(viewsets.ViewSet):
         serializer = JobSerializers(paginated_details, many=True).data
         
         description = [jobs["description"] for jobs in serializer]
-        matched_jobs = JobFetch()._fetch(description)
+        matched_jobs = fetchjobs(description)
         
         return response.Response({"Message": "All jobs fetched successfully :)",  "Pages response": paginator._get_paginateddetail().data, "Data": serializer})
