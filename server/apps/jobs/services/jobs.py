@@ -1,12 +1,3 @@
-#    { "recruiter":2,
-#     "title": "Java Depeloper",
-#     "description": "Want a passionate java developer who can work in frameworks like springboot",
-#     "salary": 30000,
-#     "job_type": "internship",
-#     "experience_level": "junior",
-#     "deadline": "2026-06-01"
-# }
-
 from ..models.entities import Job
 from apps.accounts.models.entities import Recruiter
 import random
@@ -73,8 +64,6 @@ def add_more_jobs():
         job_type_choice = random.choice(job_type)
         experience = random.choice(experience_level)
         job_deadline = random.choice(deadline)
-        
-        # print(recruiter_id, jobtitle, job_description, job_salary, job_type_choice, experience, job_deadline)
 
         Job.objects.create(
             recruiter = recruiter_id,

@@ -3,6 +3,7 @@ from ..models.entities import Recruiter
 from ..services.fetchJobs import *
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions, response, status, generics
+from .pagination import *
 
 
 """ Fully admin control views """
@@ -90,7 +91,7 @@ class JobSerializersView(viewsets.ViewSet):
         
             
     # Delete a job object
-    def delete(self, request: any, pk: int) -> response.Response:
+    def destroy(self, request: any, pk: int) -> response.Response:
         job_to_be_deleted = get_object_or_404(Job, pk=pk)
         job_to_be_deleted.delete()
         return response.Response({"Message":"Job deleted successfully :)"}, status=status.HTTP_200_OK)
@@ -99,7 +100,12 @@ class JobSerializersView(viewsets.ViewSet):
     # Listing all the jobs available
     def list(self, request):
         queryset = Job.objects.all()
-        serializer = JobSerializers(queryset, many=True).data
+        
+        paginator = PaginatedData()
+        paginated_details = paginator.paginate_queryset(queryset, request)
+        serializer = JobSerializers(paginated_details, many=True).data
+        
         description = [jobs["description"] for jobs in serializer]
         matched_jobs = JobFetch()._fetch(description)
-        return response.Response({"Message": "All jobs fetched successfully :)", "Data": serializer})
+        
+        return response.Response({"Message": "All jobs fetched successfully :)",  "Pages response": paginator._get_paginateddetail().data, "Data": serializer})

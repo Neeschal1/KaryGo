@@ -5,11 +5,11 @@ from .views import *
 
 router = DefaultRouter()
 
-router.register('create_jobs', JobSerializersView, basename='jobcreation')
+router.register('create-jobs', JobSerializersView, basename='jobcreation')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('list_create_jobs/', JobSerializerAdminListCreateView.as_view(), name="JobSerializerAdminListCreateView"),
-    path('retrieve_update_jobs/<int:pk>/', JobSerializerAdminRetrieveUpdateView.as_view(), name="JobSerializerAdminRetrieveUpdateView"),
-    path('destroy_jobs/<int:pk>/', JobSerializerAdminDestroyView.as_view(), name="JobSerializerAdminDestroyView"),
+    path('list-create-jobs/', JobSerializerAdminListCreateView.as_view(), name="JobSerializerAdminListCreateView"),
+    path('retrieve-update-jobs/<int:pk>/', JobSerializerAdminRetrieveUpdateView.as_view(), name="JobSerializerAdminRetrieveUpdateView"),
+    path('destroy-jobs/<int:pk>/', JobSerializerAdminDestroyView.as_view(), name="JobSerializerAdminDestroyView"),
 ]
